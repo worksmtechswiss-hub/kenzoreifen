@@ -98,3 +98,8 @@
   from = "/blog/reifenpflege-tipps"
   to = "/blog/reifenpflege-tipps.html"
   status = 200
+
+[[redirects]]
+  from = "/buchung"
+  to = "/buchung.html"
+  status = 200

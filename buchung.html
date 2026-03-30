@@ -1,0 +1,2632 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termin buchen — Kenzo Reifen | Mobiler Reifenservice Winterthur</title>
+  <meta name="description" content="Buchen Sie Ihren mobilen Reifenwechsel in Winterthur online. In nur 4 Schritten zum Wunschtermin — Kenzo Reifen kommt zu Ihnen!">
+  <meta name="keywords" content="Termin buchen Reifenwechsel, mobiler Reifenservice Winterthur buchen, online Termin Reifenwechsel, Pneuservice Termin">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.kenzo-reifen.ch/buchung.html">
+  <meta property="og:title" content="Termin buchen — Kenzo Reifen | Mobiler Reifenservice Winterthur">
+  <meta property="og:description" content="Buchen Sie Ihren mobilen Reifenwechsel in Winterthur online. In nur 4 Schritten zum Wunschtermin.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.kenzo-reifen.ch/buchung.html">
+  <meta property="og:locale" content="de_CH">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet (header/footer/nav) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Structured Data: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.kenzo-reifen.ch/"},
+      {"@type": "ListItem", "position": 2, "name": "Termin buchen", "item": "https://www.kenzo-reifen.ch/buchung.html"}
+    ]
+  }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       BOOKING FORM STYLES — DARK THEME
+       ═══════════════════════════════════════════ */
+
+    .booking-section {
+      background: #0f0f1a;
+      padding: 60px 0 100px;
+      min-height: 80vh;
+    }
+
+    .booking-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .booking-header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #642e8e, #f86c20);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .booking-header p {
+      color: #808095;
+      font-size: 0.95rem;
+    }
+
+    /* ── Step Indicator ── */
+    .booking-steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 40px;
+    }
+    .booking-step-item {
+      display: flex;
+      align-items: center;
+    }
+    .booking-step-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .booking-step-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      color: #808095;
+      background: #1a1a2e;
+      border: 2px solid rgba(100,46,142,0.2);
+    }
+    .booking-step-circle.active {
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(100,46,142,0.4);
+    }
+    .booking-step-circle.done {
+      background: linear-gradient(135deg, #f86c20, #ff8a47);
+      color: #fff;
+      border-color: transparent;
+    }
+    .booking-step-label {
+      font-size: 0.65rem;
+      margin-top: 6px;
+      font-weight: 600;
+      color: #808095;
+      transition: color 0.3s;
+    }
+    .booking-step-label.active,
+    .booking-step-label.done {
+      color: #c0c0d0;
+    }
+    .booking-step-line {
+      width: 44px;
+      height: 2px;
+      border-radius: 2px;
+      margin: 0 8px;
+      margin-bottom: 22px;
+      background: rgba(100,46,142,0.15);
+      transition: background 0.3s;
+    }
+    .booking-step-line.done {
+      background: linear-gradient(90deg, #f86c20, #642e8e);
+    }
+
+    /* ── Card ── */
+    .booking-card {
+      background: #151520;
+      border: 1px solid rgba(100,46,142,0.15);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 720px;
+      margin: 0 auto;
+      transition: opacity 0.3s ease;
+    }
+    .booking-card h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .booking-card .booking-subtitle {
+      color: #808095;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    /* ── Inputs ── */
+    .booking-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .booking-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #c0c0d0;
+    }
+    .booking-label .req {
+      color: #f86c20;
+    }
+    .booking-input {
+      background: #1a1a2e;
+      border: 2px solid rgba(100,46,142,0.2);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #fff;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .booking-input::placeholder {
+      color: #555570;
+    }
+    .booking-input:focus {
+      border-color: #642e8e;
+      box-shadow: 0 0 0 3px rgba(100,46,142,0.15);
+    }
+    .booking-textarea {
+      resize: none;
+      min-height: 80px;
+    }
+    .booking-select {
+      background: #1a1a2e;
+      border: 2px solid rgba(100,46,142,0.2);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #fff;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23808095' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .booking-select:focus {
+      border-color: #642e8e;
+      box-shadow: 0 0 0 3px rgba(100,46,142,0.15);
+    }
+    .booking-select option {
+      background: #1a1a2e;
+      color: #fff;
+    }
+    .booking-select.placeholder {
+      color: #555570;
+    }
+
+    /* ── Select Grid (buttons) ── */
+    .booking-select-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .booking-select-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .booking-select-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .booking-select-btn {
+      background: #1a1a2e;
+      border: 2px solid rgba(100,46,142,0.2);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: #c0c0d0;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    .booking-select-btn:hover {
+      border-color: rgba(100,46,142,0.4);
+      background: rgba(100,46,142,0.08);
+    }
+    .booking-select-btn.active {
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      border-color: #642e8e;
+      color: #fff;
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(100,46,142,0.3);
+    }
+
+    /* ── Service Cards (Step 1) ── */
+    .booking-service-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #1a1a2e;
+      border: 2px solid rgba(100,46,142,0.15);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: left;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+    }
+    .booking-service-card:hover {
+      border-color: rgba(100,46,142,0.3);
+    }
+    .booking-service-card.active {
+      background: rgba(100,46,142,0.08);
+      border-color: #642e8e;
+      box-shadow: 0 4px 20px rgba(100,46,142,0.15);
+      transform: scale(1.01);
+    }
+    .booking-service-icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(100,46,142,0.12);
+      color: #808095;
+      transition: all 0.25s;
+    }
+    .booking-service-card.active .booking-service-icon {
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      color: #fff;
+    }
+    .booking-service-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+    .booking-service-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .booking-service-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #c0c0d0;
+      margin-bottom: 4px;
+      transition: color 0.25s;
+    }
+    .booking-service-card.active .booking-service-title {
+      color: #fff;
+    }
+    .booking-service-desc {
+      font-size: 0.85rem;
+      color: #808095;
+      line-height: 1.5;
+    }
+    .booking-service-price {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #f86c20;
+    }
+    .booking-radio {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid rgba(100,46,142,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+      transition: all 0.25s;
+    }
+    .booking-service-card.active .booking-radio {
+      border-color: #642e8e;
+      background: #642e8e;
+    }
+    .booking-radio-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+      display: none;
+    }
+    .booking-service-card.active .booking-radio-dot {
+      display: block;
+    }
+
+    /* ── Toggle Card (Extras) ── */
+    .booking-toggle {
+      background: #1a1a2e;
+      border: 2px solid rgba(100,46,142,0.15);
+      border-radius: 16px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .booking-toggle:hover {
+      border-color: rgba(100,46,142,0.3);
+    }
+    .booking-toggle.active {
+      border-color: #642e8e;
+      background: rgba(100,46,142,0.08);
+      box-shadow: 0 4px 20px rgba(100,46,142,0.1);
+    }
+    .booking-toggle-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .booking-toggle-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(100,46,142,0.12);
+      color: #808095;
+      transition: all 0.2s;
+    }
+    .booking-toggle.active .booking-toggle-icon {
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      color: #fff;
+    }
+    .booking-toggle-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+    .booking-toggle-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .booking-toggle-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .booking-toggle-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #c0c0d0;
+    }
+    .booking-toggle.active .booking-toggle-title {
+      color: #fff;
+    }
+    .booking-toggle-price {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      background: rgba(100,46,142,0.12);
+      color: #808095;
+      white-space: nowrap;
+    }
+    .booking-toggle.active .booking-toggle-price {
+      background: linear-gradient(135deg, #f86c20, #ff8a47);
+      color: #fff;
+    }
+    .booking-toggle-desc {
+      font-size: 0.78rem;
+      color: #808095;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+    .booking-checkbox {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border: 2px solid rgba(100,46,142,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+      transition: all 0.2s;
+      background: transparent;
+    }
+    .booking-toggle.active .booking-checkbox {
+      background: #642e8e;
+      border-color: #642e8e;
+    }
+
+    /* ── Zoll Slider ── */
+    .booking-slider-wrap {
+      position: relative;
+    }
+    .booking-slider-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .booking-slider-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #642e8e;
+    }
+    .booking-slider-badge {
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #f86c20, #ff8a47);
+      color: #fff;
+      margin-left: 12px;
+    }
+    .booking-slider-track {
+      position: relative;
+      height: 44px;
+      margin: 8px 0;
+    }
+    .booking-slider-bg {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 8px;
+      border-radius: 4px;
+      background: #1a1a2e;
+      transform: translateY(-50%);
+    }
+    .booking-slider-fill {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #642e8e, #f86c20);
+      transform: translateY(-50%);
+      transition: width 0.15s ease;
+    }
+    .booking-slider-thumb {
+      position: absolute;
+      top: 50%;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #1a1a2e;
+      border: 3px solid #642e8e;
+      box-shadow: 0 4px 16px rgba(100,46,142,0.4);
+      transform: translateY(-50%);
+      transition: left 0.15s ease;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .booking-slider-thumb-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #642e8e;
+    }
+    .booking-slider-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 10;
+      margin: 0;
+    }
+    .booking-slider-ticks {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 4px;
+    }
+    .booking-slider-tick {
+      font-size: 0.7rem;
+      color: #555570;
+      width: 1.5rem;
+      text-align: center;
+      font-weight: 400;
+    }
+    .booking-slider-tick.active {
+      color: #642e8e;
+      font-weight: 700;
+    }
+    .booking-slider-info {
+      margin-top: 12px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: rgba(100,46,142,0.06);
+      border: 1px solid rgba(100,46,142,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .booking-slider-info-label {
+      font-size: 0.78rem;
+      color: #808095;
+    }
+    .booking-slider-info-value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #642e8e;
+    }
+
+    /* ── Photo Upload ── */
+    .booking-upload {
+      border: 2px dashed rgba(100,46,142,0.3);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #1a1a2e;
+    }
+    .booking-upload:hover,
+    .booking-upload.dragover {
+      border-color: #642e8e;
+      background: rgba(100,46,142,0.06);
+    }
+    .booking-upload svg {
+      width: 40px;
+      height: 40px;
+      color: #555570;
+      margin: 0 auto 8px;
+      display: block;
+    }
+    .booking-upload-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #642e8e;
+    }
+    .booking-upload-hint {
+      font-size: 0.75rem;
+      color: #555570;
+      margin-top: 4px;
+    }
+    .booking-upload-done {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .booking-upload-done svg {
+      width: 20px;
+      height: 20px;
+      color: #22c55e;
+      margin: 0;
+    }
+    .booking-upload-done span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #642e8e;
+    }
+
+    /* ── Referral Banner ── */
+    .booking-referral {
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(100,46,142,0.06);
+      border: 2px solid rgba(248,108,32,0.15);
+      padding: 20px;
+    }
+    .booking-referral-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .booking-referral-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f86c20, #ff8a47);
+    }
+    .booking-referral-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+    .booking-referral-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #f86c20;
+    }
+    .booking-referral-desc {
+      font-size: 0.78rem;
+      color: #808095;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    .booking-referral-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      background: rgba(100,46,142,0.12);
+      color: #c0c0d0;
+      transition: all 0.2s;
+    }
+    .booking-referral-btn.active {
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      color: #fff;
+    }
+    .booking-referral-check {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 2px solid rgba(100,46,142,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+    .booking-referral-btn.active .booking-referral-check {
+      background: rgba(255,255,255,0.25);
+      border-color: transparent;
+    }
+
+    /* ── Price Summary ── */
+    .booking-price-summary {
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(100,46,142,0.04);
+      border: 1px solid rgba(100,46,142,0.15);
+    }
+    .booking-price-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #642e8e;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .booking-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+    .booking-price-row-label {
+      color: #808095;
+    }
+    .booking-price-row-value {
+      font-weight: 600;
+      color: #c0c0d0;
+    }
+    .booking-price-divider {
+      height: 1px;
+      background: rgba(100,46,142,0.15);
+      margin: 12px 0;
+    }
+    .booking-price-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .booking-price-total-label {
+      color: #ffffff;
+    }
+    .booking-price-total-value {
+      background: linear-gradient(135deg, #642e8e, #f86c20);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Final price bar ── */
+    .booking-final-price {
+      border-radius: 16px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .booking-final-price-total-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .booking-final-price-total-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .booking-final-price-details {
+      text-align: right;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+
+    /* ── Navigation Buttons ── */
+    .booking-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(100,46,142,0.15);
+    }
+    .booking-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 16px 32px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 20px rgba(100,46,142,0.3);
+    }
+    .booking-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(100,46,142,0.4);
+    }
+    .booking-btn-primary.submit {
+      background: linear-gradient(135deg, #ed1e28, #f86c20);
+      box-shadow: 0 4px 20px rgba(248,108,32,0.35);
+    }
+    .booking-btn-primary.submit:hover {
+      box-shadow: 0 6px 28px rgba(248,108,32,0.45);
+    }
+    .booking-btn-primary:disabled {
+      background: #2a2a3e;
+      color: #555570;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    .booking-btn-primary svg {
+      width: 16px;
+      height: 16px;
+    }
+    .booking-btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(100,46,142,0.08);
+      border: none;
+      color: #c0c0d0;
+      border-radius: 50px;
+      padding: 14px 24px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+    .booking-btn-outline:hover {
+      background: rgba(100,46,142,0.15);
+    }
+    .booking-btn-outline svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ── Contact Screen (Reparatur / Geschaeft) ── */
+    .booking-contact-screen {
+      text-align: center;
+      padding: 16px 0;
+    }
+    .booking-contact-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #642e8e;
+      cursor: pointer;
+      background: none;
+      border: none;
+      margin-bottom: 24px;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .booking-contact-back:hover {
+      opacity: 0.8;
+    }
+    .booking-contact-back svg {
+      width: 16px;
+      height: 16px;
+    }
+    .booking-contact-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(100,46,142,0.12), rgba(248,108,32,0.12));
+    }
+    .booking-contact-circle svg {
+      width: 40px;
+      height: 40px;
+    }
+    .booking-contact-screen h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .booking-contact-screen > p {
+      font-size: 0.85rem;
+      color: #808095;
+      max-width: 380px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .booking-contact-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .booking-wa-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 24px;
+      border-radius: 16px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .booking-wa-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+    }
+    .booking-wa-btn svg { width: 24px; height: 24px; }
+    .booking-phone-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 24px;
+      border-radius: 16px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      box-shadow: 0 6px 24px rgba(100,46,142,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .booking-phone-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(100,46,142,0.4);
+    }
+    .booking-phone-btn svg { width: 20px; height: 20px; }
+    .booking-contact-hours {
+      font-size: 0.75rem;
+      color: #555570;
+      margin-top: 24px;
+    }
+
+    /* ── Success Screen ── */
+    .booking-success {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .booking-success-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #642e8e, #f86c20);
+    }
+    .booking-success-icon svg {
+      width: 40px;
+      height: 40px;
+    }
+    .booking-success h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #642e8e;
+      margin-bottom: 12px;
+    }
+    .booking-success > p {
+      font-size: 0.85rem;
+      color: #808095;
+      margin-bottom: 8px;
+    }
+    .booking-success-phone-info {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      background: rgba(100,46,142,0.06);
+      border: 1px solid rgba(100,46,142,0.15);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      text-align: left;
+    }
+    .booking-success-phone-info svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .booking-success-phone-info p {
+      font-size: 0.78rem;
+      color: #808095;
+      line-height: 1.6;
+    }
+    .booking-success-summary {
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      background: rgba(100,46,142,0.04);
+      border: 1px solid rgba(100,46,142,0.15);
+      text-align: left;
+    }
+    .booking-success-referral {
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      background: rgba(248,108,32,0.06);
+      border: 1px solid rgba(248,108,32,0.12);
+    }
+    .booking-success-referral p:first-child {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #f86c20;
+      margin-bottom: 4px;
+    }
+    .booking-success-referral p:last-child {
+      font-size: 0.78rem;
+      color: #808095;
+    }
+    .booking-success-restart {
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 4px 20px rgba(100,46,142,0.3);
+      transition: all 0.2s;
+    }
+    .booking-success-restart:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(100,46,142,0.4);
+    }
+
+    /* ── Summary Bar (bottom of card) ── */
+    .booking-summary-bar {
+      max-width: 720px;
+      margin: 16px auto 0;
+      border-radius: 16px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      background: rgba(21,21,32,0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(100,46,142,0.15);
+    }
+    .booking-summary-pill {
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .booking-summary-pill.purple {
+      background: rgba(100,46,142,0.12);
+      color: #a76bd4;
+    }
+    .booking-summary-pill.orange {
+      background: rgba(248,108,32,0.12);
+      color: #f86c20;
+    }
+    .booking-summary-pill.green {
+      background: rgba(34,197,94,0.12);
+      color: #22c55e;
+    }
+    .booking-summary-pill.total {
+      margin-left: auto;
+      background: rgba(100,46,142,0.12);
+      color: #a76bd4;
+      font-weight: 700;
+    }
+
+    /* ── Error text ── */
+    .booking-error {
+      font-size: 0.75rem;
+      color: #e53e3e;
+      margin-top: 4px;
+    }
+
+    /* ── Misc helpers ── */
+    .booking-gap-6 { display: flex; flex-direction: column; gap: 24px; }
+    .booking-gap-4 { display: flex; flex-direction: column; gap: 16px; }
+    .booking-gap-3 { display: flex; flex-direction: column; gap: 12px; }
+    .booking-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .booking-grid-3-1 { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; }
+
+    .booking-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 4px 0;
+    }
+    .booking-divider-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(100,46,142,0.15);
+    }
+    .booking-divider-text {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #555570;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Location box ── */
+    .booking-location-box {
+      border-radius: 12px;
+      padding: 16px;
+      background: rgba(100,46,142,0.04);
+      border: 1px solid rgba(100,46,142,0.15);
+    }
+    .booking-location-box-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #642e8e;
+      margin-bottom: 12px;
+    }
+
+    /* ── Phone info box ── */
+    .booking-phone-info {
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(100,46,142,0.04);
+      border: 1px solid rgba(100,46,142,0.15);
+    }
+    .booking-phone-info-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      margin-top: 2px;
+    }
+    .booking-phone-info-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+    .booking-phone-info-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #642e8e;
+    }
+    .booking-phone-info-desc {
+      font-size: 0.78rem;
+      color: #808095;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── AGB checkbox ── */
+    .booking-agb {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .booking-agb-check {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border: 2px solid rgba(100,46,142,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      cursor: pointer;
+      background: transparent;
+      transition: all 0.2s;
+    }
+    .booking-agb-check.checked {
+      background: #642e8e;
+      border-color: #642e8e;
+    }
+    .booking-agb-text {
+      font-size: 0.78rem;
+      color: #808095;
+      line-height: 1.5;
+    }
+    .booking-agb-text .req { color: #f86c20; }
+
+    /* ── Evening surcharge info ── */
+    .booking-evening-info {
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(248,108,32,0.08);
+      border: 1px solid rgba(248,108,32,0.15);
+    }
+    .booking-evening-info svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .booking-evening-info span {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #f86c20;
+    }
+
+    /* ── Entsorgung counter ── */
+    .booking-counter {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .booking-counter-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #c0c0d0;
+    }
+    .booking-counter-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: rgba(100,46,142,0.12);
+      color: #642e8e;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .booking-counter-btn:hover {
+      background: rgba(100,46,142,0.2);
+    }
+    .booking-counter-val {
+      width: 32px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #642e8e;
+    }
+    .booking-counter-total {
+      margin-left: auto;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #f86c20;
+    }
+
+    /* ── Neue Reifen dimension toggles ── */
+    .booking-dim-btns {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .booking-dim-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 2px solid rgba(100,46,142,0.2);
+      background: #1a1a2e;
+      color: #c0c0d0;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+    .booking-dim-btn.active {
+      background: linear-gradient(135deg, #642e8e, #7b3fa8);
+      border-color: #642e8e;
+      color: #fff;
+    }
+    .booking-dim-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ── Strikethrough price ── */
+    .booking-strike {
+      text-decoration: line-through;
+      color: #555570;
+      font-size: 0.75rem;
+      margin-right: 8px;
+    }
+    .booking-green-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(34,197,94,0.12);
+      color: #22c55e;
+      margin-left: 6px;
+    }
+    .booking-anfrage {
+      color: #f86c20;
+      font-weight: 600;
+    }
+
+    /* ── Upload file input hidden ── */
+    .booking-file-input {
+      display: none;
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 768px) {
+      .booking-section {
+        padding: 30px 0 80px;
+      }
+      .booking-card {
+        padding: 24px 18px;
+        border-radius: 18px;
+      }
+      .booking-header h1 {
+        font-size: 1.5rem;
+      }
+      .booking-select-grid.cols-3 {
+        grid-template-columns: 1fr;
+      }
+      .booking-select-grid.cols-2 {
+        grid-template-columns: 1fr;
+      }
+      .booking-grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .booking-grid-3-1 {
+        grid-template-columns: 1fr;
+      }
+      .booking-steps {
+        margin-bottom: 24px;
+      }
+      .booking-step-line {
+        width: 24px;
+        margin: 0 4px;
+      }
+      .booking-step-label {
+        font-size: 0.55rem;
+      }
+      .booking-step-circle {
+        width: 34px;
+        height: 34px;
+        font-size: 0.7rem;
+      }
+      .booking-nav {
+        flex-direction: column-reverse;
+        gap: 12px;
+      }
+      .booking-nav .booking-btn-primary,
+      .booking-nav .booking-btn-outline {
+        width: 100%;
+        justify-content: center;
+      }
+      .booking-final-price {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+      .booking-final-price-details {
+        text-align: center;
+      }
+      .booking-summary-bar {
+        display: none;
+      }
+      .booking-dim-btns {
+        flex-direction: column;
+      }
+      .booking-slider-ticks {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="Kenzo Reifen — Startseite">
+        <span class="accent">KENZO</span> REIFEN
+      </a>
+
+      <nav class="nav-main" role="navigation" aria-label="Hauptnavigation">
+        <a href="index.html">Home</a>
+        <a href="winterthur/">Winterthur</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="preise.html">Preise</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="tel:+41765193141" class="nav-cta">Jetzt anrufen</a>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Menue oeffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== BREADCRUMB ========== -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-sep" aria-hidden="true">&rsaquo;</li>
+        <li class="breadcrumb-current">Termin buchen</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ========== BOOKING FORM ========== -->
+  <section class="booking-section">
+    <div class="container">
+
+      <div class="booking-header" id="booking-header">
+        <h1>Mobiler Reifenservice</h1>
+        <p id="booking-header-sub">Buchen Sie Ihren Wunschtermin in nur 4 Schritten</p>
+      </div>
+
+      <div id="step-indicator" class="booking-steps"></div>
+
+      <div id="booking-form" class="booking-card"></div>
+
+      <div id="booking-summary-bar"></div>
+
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><span class="accent">KENZO</span> REIFEN</a>
+          <p>Ihr mobiler Reifenservice in der Region Winterthur. Professionell, bequem und fair — direkt bei Ihnen vor Ort.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Leistungen</h4>
+          <a href="leistungen.html">Reifenwechsel</a>
+          <a href="leistungen.html">Reifeneinlagerung</a>
+          <a href="leistungen.html">Auswuchten</a>
+          <a href="leistungen.html">Reifenverkauf</a>
+          <a href="preise.html">Preise</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quartiere & Umland</h4>
+          <a href="winterthur/">Winterthur</a>
+          <a href="winterthur/oberwinterthur.html">Oberwinterthur</a>
+          <a href="winterthur/toess.html">T&ouml;ss</a>
+          <a href="winterthur/seen.html">Seen</a>
+          <a href="winterthur/veltheim.html">Veltheim</a>
+          <a href="umland/effretikon.html">Effretikon</a>
+          <a href="umland/seuzach.html">Seuzach</a>
+          <a href="umland/neftenbach.html">Neftenbach</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Kontakt</h4>
+          <a href="tel:+41765193141">+41 76 519 31 41</a>
+          <a href="mailto:info@kenzo-reifen.ch">info@kenzo-reifen.ch</a>
+          <a href="https://wa.me/41765193141">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Kenzo Reifen. Alle Rechte vorbehalten.</span>
+        <span>Mobiler Reifenwechsel Winterthur</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/41765193141" class="whatsapp-float" aria-label="WhatsApp schreiben" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- Scripts -->
+  <script src="main.js"></script>
+
+  <script>
+  (function() {
+    'use strict';
+
+    /* ═══════════════════════════════════════════
+       CONFIGURATION
+       ═══════════════════════════════════════════ */
+
+    var SERVICES = [
+      {
+        id: 'wechsel',
+        title: 'Rad- & Reifenwechsel',
+        desc: 'Saisonaler Wechsel von Sommer- auf Winterreifen oder umgekehrt \u2013 direkt bei Ihnen vor Ort.',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2.5"/><circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="24" r="4" fill="currentColor"/><line x1="24" y1="4" x2="24" y2="12" stroke="currentColor" stroke-width="2"/><line x1="24" y1="36" x2="24" y2="44" stroke="currentColor" stroke-width="2"/><line x1="4" y1="24" x2="12" y2="24" stroke="currentColor" stroke-width="2"/><line x1="36" y1="24" x2="44" y2="24" stroke="currentColor" stroke-width="2"/></svg>'
+      },
+      {
+        id: 'reparatur',
+        title: 'Professionelle Reifenreparatur',
+        desc: 'Nagel, Schraube oder Riss im Reifen? Kontaktieren Sie uns direkt \u2013 wir helfen schnell & zuverl\u00e4ssig.',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><path d="M10 38L20 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M20 28L28 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="32" cy="16" r="8" stroke="currentColor" stroke-width="2.5"/><path d="M28 12L36 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M36 12L28 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="6" y="36" width="6" height="6" rx="1" fill="currentColor" opacity="0.3"/></svg>'
+      },
+      {
+        id: 'geschaeft',
+        title: 'Gesch\u00e4ftskunden',
+        desc: 'Flottenservice, Firmenfahrzeuge oder regelm\u00e4ssige Reifenwechsel? Kontaktieren Sie uns f\u00fcr ein massgeschneidertes Angebot.',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="14" width="36" height="26" rx="3" stroke="currentColor" stroke-width="2.5"/><path d="M16 14V10a4 4 0 014-4h8a4 4 0 014 4v4" stroke="currentColor" stroke-width="2.5"/><path d="M6 24h36" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="24" r="3" fill="currentColor"/></svg>'
+      }
+    ];
+
+    var FAHRZEUG_TYPES = ['PKW', 'SUV / Gel\u00e4ndewagen', 'Transporter / Van', 'Sportwagen'];
+    var FELGEN_TYPES = ['Stahlfelgen', 'Alufelgen', 'Unbekannt'];
+    var REIFEN_TYPES = ['Sommerreifen', 'Winterreifen', 'Ganzjahresreifen'];
+
+    var TIME_SLOTS = [
+      { label: '08:00 \u2013 10:00', value: '08:00 \u2013 10:00', zuschlag: false },
+      { label: '10:00 \u2013 12:00', value: '10:00 \u2013 12:00', zuschlag: false },
+      { label: '12:00 \u2013 14:00', value: '12:00 \u2013 14:00', zuschlag: false },
+      { label: '14:00 \u2013 16:00', value: '14:00 \u2013 16:00', zuschlag: false },
+      { label: '16:00 \u2013 18:00', value: '16:00 \u2013 18:00', zuschlag: false },
+      { label: '18:00 \u2013 19:30 (+CHF 50.\u2013)', value: '18:00 \u2013 19:30', zuschlag: true },
+      { label: '19:30 \u2013 21:30 (+CHF 50.\u2013)', value: '19:30 \u2013 21:30', zuschlag: true }
+    ];
+
+    var KONTAKT_ZEITEN = [
+      'Morgens (08:00 \u2013 10:00)',
+      'Vormittags (10:00 \u2013 12:00)',
+      'Mittags (12:00 \u2013 14:00)',
+      'Nachmittags (14:00 \u2013 16:00)',
+      'Sp\u00e4tnachmittags (16:00 \u2013 18:00)',
+      'Jederzeit erreichbar'
+    ];
+
+    var EXTRAS = [
+      {
+        id: 'obd',
+        title: 'Fehler Auslesen & L\u00f6schen (OBD)',
+        desc: 'Fehlerspeicher auslesen und l\u00f6schen mit professionellem OBD-Diagnoseger\u00e4t.',
+        price: 20,
+        iconSvg: '<svg viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M10 14v4M14 12v6M18 14v4M22 13v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>'
+      },
+      {
+        id: 'staubsauger',
+        title: 'Staubsaugerreinigung (grob)',
+        desc: 'Grobe Innenreinigung des Fahrzeugs mit Industriestaubsauger.',
+        price: 30,
+        iconSvg: '<svg viewBox="0 0 32 32" fill="none"><circle cx="12" cy="22" r="6" stroke="currentColor" stroke-width="2"/><path d="M16 18l10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 8h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="22" r="2" fill="currentColor"/></svg>'
+      },
+      {
+        id: 'fahrzeugcheck',
+        title: 'Fahrzeugcheck, Fl\u00fcssigkeiten',
+        desc: 'Kontrolle aller wichtigen Fl\u00fcssigkeiten: \u00d6l, K\u00fchlmittel, Bremsfl\u00fcssigkeit, Scheibenwischwasser.',
+        price: 50,
+        iconSvg: '<svg viewBox="0 0 32 32" fill="none"><path d="M16 4v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 12h12l2 14H8l2-14z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 18h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 22h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>'
+      }
+    ];
+
+    var ANFAHRT = 100;
+    var ANFAHRT_REFERRAL = 50;
+    var ENTSORGUNG_PRO_REIFEN = 5;
+    var ABEND_ZUSCHLAG = 50;
+
+    var PHONE = '+41765193141';
+    var PHONE_DISPLAY = '+41 76 519 31 41';
+    var WHATSAPP_BASE = 'https://wa.me/41765193141';
+
+    var STEPS = [
+      { id: 1, label: 'Dienstleistung' },
+      { id: 2, label: 'Fahrzeugdaten' },
+      { id: 3, label: 'Extras' },
+      { id: 4, label: 'Kontakt & Termin' }
+    ];
+
+    /* ═══ Helpers ═══ */
+
+    function getPrice(zoll) {
+      if (zoll >= 13 && zoll <= 16) return 80;
+      if (zoll >= 17 && zoll <= 19) return 100;
+      if (zoll >= 20 && zoll <= 21) return 120;
+      if (zoll >= 22 && zoll <= 24) return 140;
+      return 0;
+    }
+
+    function getPriceLabel(zoll) {
+      if (zoll >= 13 && zoll <= 16) return '13"\u201316"';
+      if (zoll >= 17 && zoll <= 19) return '17"\u201319"';
+      if (zoll >= 20 && zoll <= 21) return '20"\u201321"';
+      if (zoll >= 22 && zoll <= 24) return '22"\u201324"';
+      return '';
+    }
+
+    function esc(str) {
+      var d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function checkSvg() {
+      return '<svg viewBox="0 0 16 16" fill="none" width="12" height="12"><path d="M3 8.5l3 3 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+
+    function whatsappSvg() {
+      return '<svg viewBox="0 0 24 24" fill="#fff" width="24" height="24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
+    }
+
+    function phoneSvg() {
+      return '<svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+
+    function arrowLeftSvg() {
+      return '<svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>';
+    }
+
+    function arrowRightSvg() {
+      return '<svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>';
+    }
+
+    /* ═══ STATE ═══ */
+
+    var step = 1;
+    var submitted = false;
+    var form = {
+      service: '',
+      fahrzeugTyp: '',
+      fahrzeugMarke: '',
+      fahrzeugModell: '',
+      felgenTyp: '',
+      zoll: 17,
+      reifenTyp: '',
+      reifenDimensionen: '',
+      reifenFoto: null,
+      reifenFotoName: '',
+      neueReifen: false,
+      neueReifenMarke: '',
+      neueReifenWieBisher: true,
+      neueReifenDimensionen: '',
+      einlagerung: false,
+      entsorgung: false,
+      entsorgungAnzahl: 4,
+      extras: [],
+      referralCode: '',
+      hasReferral: false,
+      vorname: '',
+      nachname: '',
+      email: '',
+      telefon: '',
+      strasse: '',
+      plz: '',
+      ort: '',
+      wunschDatum: '',
+      wunschZeit: '',
+      kontaktZeit: '',
+      bemerkungen: '',
+      agb: false
+    };
+    var errors = {};
+
+    /* ═══ DOM REFERENCES ═══ */
+
+    var formCard = document.getElementById('booking-form');
+    var stepIndicator = document.getElementById('step-indicator');
+    var summaryBar = document.getElementById('booking-summary-bar');
+    var headerSub = document.getElementById('booking-header-sub');
+
+    /* ═══ PRICE CALCULATION ═══ */
+
+    function calcPrices() {
+      var price = getPrice(form.zoll);
+      var anfahrt = form.hasReferral ? ANFAHRT_REFERRAL : ANFAHRT;
+      var entsorgungTotal = form.entsorgung ? form.entsorgungAnzahl * ENTSORGUNG_PRO_REIFEN : 0;
+      var extrasTotal = 0;
+      for (var i = 0; i < form.extras.length; i++) {
+        for (var j = 0; j < EXTRAS.length; j++) {
+          if (EXTRAS[j].id === form.extras[i]) { extrasTotal += EXTRAS[j].price; break; }
+        }
+      }
+      var slot = null;
+      for (var k = 0; k < TIME_SLOTS.length; k++) {
+        if (TIME_SLOTS[k].value === form.wunschZeit) { slot = TIME_SLOTS[k]; break; }
+      }
+      var isAbend = slot ? slot.zuschlag : false;
+      var abendZuschlag = isAbend ? ABEND_ZUSCHLAG : 0;
+      var total = price + anfahrt + entsorgungTotal + extrasTotal + abendZuschlag;
+      return {
+        price: price,
+        anfahrt: anfahrt,
+        entsorgungTotal: entsorgungTotal,
+        extrasTotal: extrasTotal,
+        isAbend: isAbend,
+        abendZuschlag: abendZuschlag,
+        total: total
+      };
+    }
+
+    /* ═══ VALIDATION ═══ */
+
+    function validateStep2() {
+      var e = {};
+      if (!form.fahrzeugTyp) e.fahrzeugTyp = true;
+      if (!form.felgenTyp) e.felgenTyp = true;
+      if (!form.reifenTyp) e.reifenTyp = true;
+      errors = e;
+      return Object.keys(e).length === 0;
+    }
+
+    function validateStep4() {
+      var e = {};
+      if (!form.vorname.trim()) e.vorname = true;
+      if (!form.nachname.trim()) e.nachname = true;
+      if (!form.email.trim() || form.email.indexOf('@') === -1) e.email = true;
+      if (!form.telefon.trim()) e.telefon = true;
+      if (!form.strasse.trim()) e.strasse = true;
+      if (!form.plz.trim()) e.plz = true;
+      if (!form.ort.trim()) e.ort = true;
+      if (!form.wunschDatum) e.wunschDatum = true;
+      if (!form.wunschZeit) e.wunschZeit = true;
+      if (!form.kontaktZeit) e.kontaktZeit = true;
+      if (!form.agb) e.agb = true;
+      errors = e;
+      return Object.keys(e).length === 0;
+    }
+
+    /* ═══ SET VALUE HELPER ═══ */
+
+    function setVal(key, val) {
+      form[key] = val;
+      if (errors[key]) { delete errors[key]; }
+    }
+
+    function toggleExtra(id) {
+      var idx = form.extras.indexOf(id);
+      if (idx > -1) {
+        form.extras.splice(idx, 1);
+      } else {
+        form.extras.push(id);
+      }
+    }
+
+    /* ═══ NAVIGATION ═══ */
+
+    function handleNext() {
+      if (step === 1 && !form.service) return;
+      if (step === 2 && !validateStep2()) { render(); return; }
+      if (step === 4) {
+        if (!validateStep4()) { render(); return; }
+        submitted = true;
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      step++;
+      errors = {};
+      render();
+      window.scrollTo({ top: formCard.offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function handleBack() {
+      step--;
+      errors = {};
+      render();
+      window.scrollTo({ top: formCard.offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function resetForm() {
+      step = 1;
+      submitted = false;
+      form = {
+        service: '', fahrzeugTyp: '', fahrzeugMarke: '', fahrzeugModell: '',
+        felgenTyp: '', zoll: 17, reifenTyp: '', reifenDimensionen: '',
+        reifenFoto: null, reifenFotoName: '', neueReifen: false,
+        neueReifenMarke: '', neueReifenWieBisher: true, neueReifenDimensionen: '',
+        einlagerung: false, entsorgung: false, entsorgungAnzahl: 4,
+        extras: [], referralCode: '', hasReferral: false,
+        vorname: '', nachname: '', email: '', telefon: '',
+        strasse: '', plz: '', ort: '', wunschDatum: '', wunschZeit: '',
+        kontaktZeit: '', bemerkungen: '', agb: false
+      };
+      errors = {};
+      render();
+    }
+
+    /* ═══════════════════════════════════════════
+       RENDER FUNCTIONS
+       ═══════════════════════════════════════════ */
+
+    function render() {
+      var isDirectContact = (form.service === 'reparatur' || form.service === 'geschaeft');
+
+      // Header subtitle
+      if (submitted) {
+        headerSub.textContent = '';
+      } else if (isDirectContact) {
+        headerSub.textContent = 'Kontaktieren Sie uns direkt';
+      } else {
+        headerSub.textContent = 'Buchen Sie Ihren Wunschtermin in nur 4 Schritten';
+      }
+
+      // Step indicator
+      renderStepIndicator(isDirectContact);
+
+      // Form content
+      if (submitted) {
+        renderSuccess();
+      } else if (step === 1 && form.service === 'reparatur') {
+        renderReparaturContact();
+      } else if (step === 1 && form.service === 'geschaeft') {
+        renderGeschaeftContact();
+      } else if (step === 1) {
+        renderStep1();
+      } else if (step === 2) {
+        renderStep2();
+      } else if (step === 3) {
+        renderStep3();
+      } else if (step === 4) {
+        renderStep4();
+      }
+
+      // Summary bar
+      renderSummaryBar(isDirectContact);
+    }
+
+    /* ── Step Indicator ── */
+    function renderStepIndicator(isDirectContact) {
+      if (isDirectContact || submitted) {
+        stepIndicator.style.display = 'none';
+        return;
+      }
+      stepIndicator.style.display = 'flex';
+      var html = '';
+      for (var i = 0; i < STEPS.length; i++) {
+        var s = STEPS[i];
+        var circleClass = 'booking-step-circle';
+        var labelClass = 'booking-step-label';
+        var circleContent = '' + s.id;
+        if (step > s.id) {
+          circleClass += ' done';
+          labelClass += ' done';
+          circleContent = '<svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        } else if (step === s.id) {
+          circleClass += ' active';
+          labelClass += ' active';
+        }
+        html += '<div class="booking-step-item">';
+        html += '<div class="booking-step-col">';
+        html += '<div class="' + circleClass + '">' + circleContent + '</div>';
+        html += '<span class="' + labelClass + '">' + esc(s.label) + '</span>';
+        html += '</div>';
+        if (i < STEPS.length - 1) {
+          html += '<div class="booking-step-line' + (step > s.id ? ' done' : '') + '"></div>';
+        }
+        html += '</div>';
+      }
+      stepIndicator.innerHTML = html;
+    }
+
+    /* ── Step 1: Service Selection ── */
+    function renderStep1() {
+      var html = '<h2>Was k\u00f6nnen wir f\u00fcr Sie tun?</h2>';
+      html += '<p class="booking-subtitle">W\u00e4hlen Sie die gew\u00fcnschte Dienstleistung aus.</p>';
+      html += '<div class="booking-gap-4">';
+      for (var i = 0; i < SERVICES.length; i++) {
+        var svc = SERVICES[i];
+        var isActive = form.service === svc.id;
+        html += '<button type="button" class="booking-service-card' + (isActive ? ' active' : '') + '" data-action="select-service" data-value="' + svc.id + '">';
+        html += '<div class="booking-service-icon">' + svc.iconSvg + '</div>';
+        html += '<div class="booking-service-body">';
+        html += '<div class="booking-service-title">' + esc(svc.title) + '</div>';
+        html += '<div class="booking-service-desc">' + esc(svc.desc) + '</div>';
+        if (svc.id === 'wechsel') {
+          html += '<div class="booking-service-price">Ab CHF 80.\u2013 + Anfahrt</div>';
+        }
+        html += '</div>';
+        html += '<div class="booking-radio"><div class="booking-radio-dot"></div></div>';
+        html += '</button>';
+      }
+      html += '</div>';
+
+      // Nav
+      html += '<div class="booking-nav">';
+      html += '<div></div>';
+      html += '<button type="button" class="booking-btn-primary' + (!form.service ? '' : '') + '" data-action="next"' + (!form.service ? ' disabled' : '') + '>Weiter ' + arrowRightSvg() + '</button>';
+      html += '</div>';
+
+      formCard.innerHTML = html;
+    }
+
+    /* ── Reparatur Contact ── */
+    function renderReparaturContact() {
+      var waUrl = WHATSAPP_BASE + '?text=' + encodeURIComponent('Hallo, ich habe ein Reifenproblem und ben\u00f6tige eine professionelle Reparatur. K\u00f6nnen Sie mir helfen?');
+      var html = '<div class="booking-contact-screen">';
+      html += '<button type="button" class="booking-contact-back" data-action="clear-service">' + arrowLeftSvg() + ' Zur\u00fcck zur Auswahl</button>';
+      html += '<div class="booking-contact-circle">';
+      html += '<svg viewBox="0 0 48 48" fill="none"><path d="M10 38L20 28" stroke="#642e8e" stroke-width="2.5" stroke-linecap="round"/><path d="M20 28L28 20" stroke="#642e8e" stroke-width="2.5" stroke-linecap="round"/><circle cx="32" cy="16" r="8" stroke="#f86c20" stroke-width="2.5"/><path d="M28 12L36 20" stroke="#f86c20" stroke-width="2" stroke-linecap="round"/><path d="M36 12L28 20" stroke="#f86c20" stroke-width="2" stroke-linecap="round"/></svg>';
+      html += '</div>';
+      html += '<h3>Professionelle Reifenreparatur</h3>';
+      html += '<p>F\u00fcr eine schnelle Hilfe bei Reifensch\u00e4den kontaktieren Sie uns direkt per WhatsApp oder Telefon. Wir melden uns umgehend bei Ihnen!</p>';
+      html += '<div class="booking-contact-btns">';
+      html += '<a href="' + waUrl + '" target="_blank" rel="noopener noreferrer" class="booking-wa-btn">' + whatsappSvg() + ' \u00dcber WhatsApp kontaktieren</a>';
+      html += '<a href="tel:' + PHONE + '" class="booking-phone-btn">' + phoneSvg() + ' Jetzt anrufen: ' + PHONE_DISPLAY + '</a>';
+      html += '</div>';
+      html += '<p class="booking-contact-hours">Erreichbar Mo \u2013 Sa, 08:00 \u2013 18:00 Uhr</p>';
+      html += '</div>';
+      formCard.innerHTML = html;
+    }
+
+    /* ── Geschaeft Contact ── */
+    function renderGeschaeftContact() {
+      var waUrl = WHATSAPP_BASE + '?text=' + encodeURIComponent('Hallo, ich bin Gesch\u00e4ftskunde und interessiere mich f\u00fcr Ihren Flottenservice / regelm\u00e4ssigen Reifenwechsel. K\u00f6nnen Sie mir ein Angebot erstellen?');
+      var html = '<div class="booking-contact-screen">';
+      html += '<button type="button" class="booking-contact-back" data-action="clear-service">' + arrowLeftSvg() + ' Zur\u00fcck zur Auswahl</button>';
+      html += '<div class="booking-contact-circle">';
+      html += '<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="14" width="36" height="26" rx="3" stroke="#642e8e" stroke-width="2.5"/><path d="M16 14V10a4 4 0 014-4h8a4 4 0 014 4v4" stroke="#642e8e" stroke-width="2.5"/><path d="M6 24h36" stroke="#f86c20" stroke-width="2"/><circle cx="24" cy="24" r="3" fill="#f86c20"/></svg>';
+      html += '</div>';
+      html += '<h3>Gesch\u00e4ftskunden</h3>';
+      html += '<p>Sie haben eine Fahrzeugflotte oder ben\u00f6tigen regelm\u00e4ssigen Reifenservice f\u00fcr Ihr Unternehmen? Kontaktieren Sie uns direkt \u2013 wir erstellen Ihnen ein individuelles Angebot.</p>';
+      html += '<div class="booking-contact-btns">';
+      html += '<a href="' + waUrl + '" target="_blank" rel="noopener noreferrer" class="booking-wa-btn">' + whatsappSvg() + ' \u00dcber WhatsApp kontaktieren</a>';
+      html += '<a href="tel:' + PHONE + '" class="booking-phone-btn">' + phoneSvg() + ' Jetzt anrufen: ' + PHONE_DISPLAY + '</a>';
+      html += '</div>';
+      html += '<p class="booking-contact-hours">Erreichbar Mo \u2013 Sa, 08:00 \u2013 18:00 Uhr</p>';
+      html += '</div>';
+      formCard.innerHTML = html;
+    }
+
+    /* ── Step 2: Fahrzeugdaten ── */
+    function renderStep2() {
+      var p = calcPrices();
+      var html = '<h2>Fahrzeug- & Reifendaten</h2>';
+      html += '<p class="booking-subtitle">Bitte geben Sie die relevanten Daten zu Ihrem Fahrzeug an.</p>';
+      html += '<div class="booking-gap-6">';
+
+      // Fahrzeugtyp
+      html += '<div>';
+      html += '<label class="booking-label">Fahrzeugtyp <span class="req">*</span></label>';
+      html += '<div class="booking-select-grid cols-2" style="margin-top:8px;">';
+      for (var i = 0; i < FAHRZEUG_TYPES.length; i++) {
+        html += '<button type="button" class="booking-select-btn' + (form.fahrzeugTyp === FAHRZEUG_TYPES[i] ? ' active' : '') + '" data-action="set" data-key="fahrzeugTyp" data-value="' + esc(FAHRZEUG_TYPES[i]) + '">' + esc(FAHRZEUG_TYPES[i]) + '</button>';
+      }
+      html += '</div>';
+      if (errors.fahrzeugTyp) html += '<p class="booking-error">Bitte w\u00e4hlen Sie einen Fahrzeugtyp.</p>';
+      html += '</div>';
+
+      // Marke + Modell
+      html += '<div class="booking-grid-2">';
+      html += '<div class="booking-field"><label class="booking-label">Fahrzeug Marke</label><input class="booking-input" data-key="fahrzeugMarke" placeholder="z.B. BMW, VW, Audi" value="' + esc(form.fahrzeugMarke) + '"></div>';
+      html += '<div class="booking-field"><label class="booking-label">Fahrzeug Modell</label><input class="booking-input" data-key="fahrzeugModell" placeholder="z.B. 3er, Golf, A4" value="' + esc(form.fahrzeugModell) + '"></div>';
+      html += '</div>';
+
+      // Felgentyp
+      html += '<div>';
+      html += '<label class="booking-label">Felgentyp <span class="req">*</span></label>';
+      html += '<div class="booking-select-grid cols-3" style="margin-top:8px;">';
+      for (var j = 0; j < FELGEN_TYPES.length; j++) {
+        html += '<button type="button" class="booking-select-btn' + (form.felgenTyp === FELGEN_TYPES[j] ? ' active' : '') + '" data-action="set" data-key="felgenTyp" data-value="' + esc(FELGEN_TYPES[j]) + '">' + esc(FELGEN_TYPES[j]) + '</button>';
+      }
+      html += '</div>';
+      if (errors.felgenTyp) html += '<p class="booking-error">Bitte w\u00e4hlen Sie einen Felgentyp.</p>';
+      html += '</div>';
+
+      // Zoll Slider
+      html += renderZollSlider();
+
+      // Reifenart
+      html += '<div>';
+      html += '<label class="booking-label">Reifenart <span class="req">*</span></label>';
+      html += '<div class="booking-select-grid cols-3" style="margin-top:8px;">';
+      for (var k = 0; k < REIFEN_TYPES.length; k++) {
+        html += '<button type="button" class="booking-select-btn' + (form.reifenTyp === REIFEN_TYPES[k] ? ' active' : '') + '" data-action="set" data-key="reifenTyp" data-value="' + esc(REIFEN_TYPES[k]) + '">' + esc(REIFEN_TYPES[k]) + '</button>';
+      }
+      html += '</div>';
+      if (errors.reifenTyp) html += '<p class="booking-error">Bitte w\u00e4hlen Sie die Reifenart.</p>';
+      html += '</div>';
+
+      // Reifendimensionen
+      html += '<div class="booking-field"><label class="booking-label">Reifendimensionen (falls bekannt)</label><input class="booking-input" data-key="reifenDimensionen" placeholder="z.B. 225/45 R17" value="' + esc(form.reifenDimensionen) + '"></div>';
+
+      // Photo Upload
+      html += renderPhotoUpload();
+
+      // Neue Reifen Toggle
+      html += renderNeueReifenToggle();
+
+      html += '</div>'; // end gap-6
+
+      // Nav
+      html += '<div class="booking-nav">';
+      html += '<button type="button" class="booking-btn-outline" data-action="back">' + arrowLeftSvg() + ' Zur\u00fcck</button>';
+      html += '<button type="button" class="booking-btn-primary" data-action="next">Weiter ' + arrowRightSvg() + '</button>';
+      html += '</div>';
+
+      formCard.innerHTML = html;
+      initSliderEvents();
+      initUploadEvents();
+    }
+
+    /* ── Zoll Slider ── */
+    function renderZollSlider() {
+      var min = 13, max = 24;
+      var pct = ((form.zoll - min) / (max - min)) * 100;
+      var price = getPrice(form.zoll);
+      var html = '<div class="booking-slider-wrap">';
+      html += '<div class="booking-slider-header">';
+      html += '<label class="booking-label">Zollgr\u00f6sse <span class="req">*</span></label>';
+      html += '<div style="display:flex;align-items:center;gap:12px;">';
+      html += '<span class="booking-slider-value">' + form.zoll + '"</span>';
+      html += '<span class="booking-slider-badge">CHF ' + price + '.\u2013</span>';
+      html += '</div></div>';
+
+      html += '<div class="booking-slider-track">';
+      html += '<div class="booking-slider-bg"></div>';
+      html += '<div class="booking-slider-fill" style="width:' + pct + '%;"></div>';
+      html += '<input type="range" min="' + min + '" max="' + max + '" step="1" value="' + form.zoll + '" class="booking-slider-input" id="zoll-slider">';
+      html += '<div class="booking-slider-thumb" style="left:calc(' + pct + '% - 16px);"><div class="booking-slider-thumb-dot"></div></div>';
+      html += '</div>';
+
+      html += '<div class="booking-slider-ticks">';
+      for (var z = min; z <= max; z++) {
+        html += '<span class="booking-slider-tick' + (z === form.zoll ? ' active' : '') + '">' + z + '</span>';
+      }
+      html += '</div>';
+
+      html += '<div class="booking-slider-info">';
+      html += '<span class="booking-slider-info-label">Preiskategorie ' + getPriceLabel(form.zoll) + '</span>';
+      html += '<span class="booking-slider-info-value">CHF ' + price + '.\u2013</span>';
+      html += '</div>';
+
+      html += '</div>';
+      return html;
+    }
+
+    function initSliderEvents() {
+      var slider = document.getElementById('zoll-slider');
+      if (!slider) return;
+      slider.addEventListener('input', function() {
+        form.zoll = parseInt(this.value);
+        // Update UI without full re-render (smoother)
+        var min = 13, max = 24;
+        var pct = ((form.zoll - min) / (max - min)) * 100;
+        var price = getPrice(form.zoll);
+        var fill = formCard.querySelector('.booking-slider-fill');
+        var thumb = formCard.querySelector('.booking-slider-thumb');
+        var valSpan = formCard.querySelector('.booking-slider-value');
+        var badge = formCard.querySelector('.booking-slider-badge');
+        var info = formCard.querySelector('.booking-slider-info');
+        var ticks = formCard.querySelectorAll('.booking-slider-tick');
+
+        if (fill) fill.style.width = pct + '%';
+        if (thumb) thumb.style.left = 'calc(' + pct + '% - 16px)';
+        if (valSpan) valSpan.textContent = form.zoll + '"';
+        if (badge) badge.textContent = 'CHF ' + price + '.\u2013';
+        if (info) {
+          info.innerHTML = '<span class="booking-slider-info-label">Preiskategorie ' + getPriceLabel(form.zoll) + '</span><span class="booking-slider-info-value">CHF ' + price + '.\u2013</span>';
+        }
+        for (var i = 0; i < ticks.length; i++) {
+          var tickVal = 13 + i;
+          if (tickVal === form.zoll) {
+            ticks[i].classList.add('active');
+          } else {
+            ticks[i].classList.remove('active');
+          }
+        }
+      });
+    }
+
+    /* ── Photo Upload ── */
+    function renderPhotoUpload() {
+      var html = '<div>';
+      html += '<label class="booking-label" style="display:block;margin-bottom:6px;">Foto vom Reifen hochladen</label>';
+      html += '<p style="font-size:0.78rem;color:#808095;margin-bottom:12px;line-height:1.5;">Falls Sie die Reifendimensionen nicht kennen, fotografieren Sie bitte die Seitenwand des Reifens \u2013 dort sind alle relevanten Angaben aufgedruckt (z.B. 225/45 R17).</p>';
+      html += '<input type="file" accept="image/*" class="booking-file-input" id="foto-input">';
+      html += '<div class="booking-upload" id="foto-dropzone">';
+      if (form.reifenFotoName) {
+        html += '<div class="booking-upload-done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>' + esc(form.reifenFotoName) + '</span></div>';
+      } else {
+        html += '<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="4" stroke="currentColor" stroke-width="2.5"/><circle cx="18" cy="22" r="4" stroke="currentColor" stroke-width="2"/><path d="M6 34l10-8 6 4 10-10 10 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        html += '<p class="booking-upload-text">Foto hierher ziehen oder klicken</p>';
+        html += '<p class="booking-upload-hint">JPG, PNG \u2013 max. 10 MB</p>';
+      }
+      html += '</div>';
+      html += '</div>';
+      return html;
+    }
+
+    function initUploadEvents() {
+      var dropzone = document.getElementById('foto-dropzone');
+      var fileInput = document.getElementById('foto-input');
+      if (!dropzone || !fileInput) return;
+
+      dropzone.addEventListener('click', function() { fileInput.click(); });
+      dropzone.addEventListener('dragover', function(e) { e.preventDefault(); dropzone.classList.add('dragover'); });
+      dropzone.addEventListener('dragleave', function() { dropzone.classList.remove('dragover'); });
+      dropzone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+        var file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+          form.reifenFoto = file;
+          form.reifenFotoName = file.name;
+          render();
+        }
+      });
+      fileInput.addEventListener('change', function() {
+        var file = this.files[0];
+        if (file && file.type.startsWith('image/')) {
+          form.reifenFoto = file;
+          form.reifenFotoName = file.name;
+          render();
+        }
+      });
+    }
+
+    /* ── Neue Reifen Toggle ── */
+    function renderNeueReifenToggle() {
+      var active = form.neueReifen;
+      var html = '<div class="booking-toggle' + (active ? ' active' : '') + '" data-action="toggle" data-key="neueReifen">';
+      html += '<div class="booking-toggle-inner">';
+      html += '<div class="booking-toggle-icon"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="16" r="2" fill="currentColor"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>';
+      html += '<div class="booking-toggle-body">';
+      html += '<div class="booking-toggle-header">';
+      html += '<span class="booking-toggle-title">Ich ben\u00f6tige neue Reifen</span>';
+      html += '<span class="booking-toggle-price">Auf Anfrage</span>';
+      html += '</div>';
+      html += '<p class="booking-toggle-desc">Wir besorgen und montieren neue Reifen f\u00fcr Sie \u2013 teilen Sie uns Ihren Markenwunsch und die gew\u00fcnschten Dimensionen mit.</p>';
+
+      if (active) {
+        html += '<div class="booking-gap-3" style="margin-top:12px;" data-stop-propagation="true">';
+        html += '<div class="booking-field"><label class="booking-label">Markenwunsch</label><input class="booking-input" data-key="neueReifenMarke" placeholder="z.B. Michelin, Continental, Pirelli, Bridgestone..." value="' + esc(form.neueReifenMarke) + '"></div>';
+        html += '<div><label class="booking-label" style="display:block;margin-bottom:8px;">Gew\u00fcnschte Dimensionen</label>';
+        html += '<div class="booking-dim-btns">';
+        html += '<button type="button" class="booking-dim-btn' + (form.neueReifenWieBisher ? ' active' : '') + '" data-action="set" data-key="neueReifenWieBisher" data-value="true">' + (form.neueReifenWieBisher ? checkSvg() : '<span style="width:12px;height:12px;display:inline-block;"></span>') + ' Wie bisher</button>';
+        html += '<button type="button" class="booking-dim-btn' + (!form.neueReifenWieBisher ? ' active' : '') + '" data-action="set" data-key="neueReifenWieBisher" data-value="false">' + (!form.neueReifenWieBisher ? checkSvg() : '<span style="width:12px;height:12px;display:inline-block;"></span>') + ' Andere Dimension</button>';
+        html += '</div>';
+        if (!form.neueReifenWieBisher) {
+          html += '<div class="booking-field" style="margin-top:8px;"><input class="booking-input" data-key="neueReifenDimensionen" placeholder="z.B. 225/45 R17" value="' + esc(form.neueReifenDimensionen) + '"></div>';
+        }
+        html += '</div></div>';
+      }
+
+      html += '</div>';
+      html += '<div class="booking-checkbox">' + (active ? checkSvg() : '') + '</div>';
+      html += '</div></div>';
+      return html;
+    }
+
+    /* ── Step 3: Extras ── */
+    function renderStep3() {
+      var p = calcPrices();
+      var html = '<h2>Zusatzleistungen</h2>';
+      html += '<p class="booking-subtitle">Optionale Services \u2013 w\u00e4hlen Sie was Sie zus\u00e4tzlich ben\u00f6tigen.</p>';
+      html += '<div class="booking-gap-4">';
+
+      // Einlagerung
+      html += renderToggleCard('einlagerung', form.einlagerung, 'Reifeneinlagerung',
+        'Sichere und fachgerechte Lagerung Ihrer alten Reifen bis zum n\u00e4chsten Saisonwechsel.',
+        'Auf Anfrage',
+        '<svg viewBox="0 0 32 32" fill="none"><rect x="5" y="10" width="22" height="18" rx="3" stroke="currentColor" stroke-width="2"/><path d="M5 16h22" stroke="currentColor" stroke-width="1.5"/><path d="M5 22h22" stroke="currentColor" stroke-width="1.5"/><path d="M11 4h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11 4v6M21 4v6" stroke="currentColor" stroke-width="1.5"/></svg>',
+        '');
+
+      // Entsorgung
+      var entsorgungChildren = '';
+      if (form.entsorgung) {
+        entsorgungChildren = '<div class="booking-counter" data-stop-propagation="true">';
+        entsorgungChildren += '<span class="booking-counter-label">Anzahl:</span>';
+        entsorgungChildren += '<button type="button" class="booking-counter-btn" data-action="entsorgung-minus">\u2013</button>';
+        entsorgungChildren += '<span class="booking-counter-val">' + form.entsorgungAnzahl + '</span>';
+        entsorgungChildren += '<button type="button" class="booking-counter-btn" data-action="entsorgung-plus">+</button>';
+        entsorgungChildren += '<span class="booking-counter-total">= CHF ' + (form.entsorgungAnzahl * ENTSORGUNG_PRO_REIFEN) + '.\u2013</span>';
+        entsorgungChildren += '</div>';
+      }
+      html += renderToggleCard('entsorgung', form.entsorgung, 'Reifenentsorgung',
+        'Fachgerechte Entsorgung Ihrer alten Reifen nach Schweizer Vorschriften.',
+        'CHF ' + ENTSORGUNG_PRO_REIFEN + '.\u2013 / Reifen',
+        '<svg viewBox="0 0 32 32" fill="none"><path d="M6 10h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 10V7a2 2 0 012-2h4a2 2 0 012 2v3" stroke="currentColor" stroke-width="2"/><path d="M8 10l1.5 16a2 2 0 002 2h9a2 2 0 002-2L24 10" stroke="currentColor" stroke-width="2"/><path d="M13 15v7M19 15v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+        entsorgungChildren);
+
+      // Divider
+      html += '<div class="booking-divider"><div class="booking-divider-line"></div><span class="booking-divider-text">WEITERE EXTRAS</span><div class="booking-divider-line"></div></div>';
+
+      // Extra Services
+      for (var i = 0; i < EXTRAS.length; i++) {
+        var ex = EXTRAS[i];
+        var isActive = form.extras.indexOf(ex.id) > -1;
+        html += renderToggleCard('extra-' + ex.id, isActive, ex.title, ex.desc, 'CHF ' + ex.price + '.\u2013', ex.iconSvg, '');
+      }
+
+      // Referral Banner
+      html += renderReferralBanner();
+
+      // Price Preview
+      html += renderPricePreview(p);
+
+      html += '</div>'; // end gap-4
+
+      // Nav
+      html += '<div class="booking-nav">';
+      html += '<button type="button" class="booking-btn-outline" data-action="back">' + arrowLeftSvg() + ' Zur\u00fcck</button>';
+      html += '<button type="button" class="booking-btn-primary" data-action="next">Weiter ' + arrowRightSvg() + '</button>';
+      html += '</div>';
+
+      formCard.innerHTML = html;
+    }
+
+    function renderToggleCard(id, active, title, desc, price, iconSvg, children) {
+      var html = '<div class="booking-toggle' + (active ? ' active' : '') + '" data-action="toggle" data-key="' + id + '">';
+      html += '<div class="booking-toggle-inner">';
+      html += '<div class="booking-toggle-icon">' + iconSvg + '</div>';
+      html += '<div class="booking-toggle-body">';
+      html += '<div class="booking-toggle-header">';
+      html += '<span class="booking-toggle-title">' + esc(title) + '</span>';
+      if (price) html += '<span class="booking-toggle-price">' + esc(price) + '</span>';
+      html += '</div>';
+      html += '<p class="booking-toggle-desc">' + esc(desc) + '</p>';
+      if (children) html += children;
+      html += '</div>';
+      html += '<div class="booking-checkbox">' + (active ? checkSvg() : '') + '</div>';
+      html += '</div></div>';
+      return html;
+    }
+
+    /* ── Referral Banner ── */
+    function renderReferralBanner() {
+      var html = '<div class="booking-referral">';
+      html += '<div class="booking-referral-inner">';
+      html += '<div class="booking-referral-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4-4v2" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#fff" stroke-width="2"/><path d="M22 21v-2a4 4 0 00-3-3.87" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M16 3.13a4 4 0 010 7.75" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>';
+      html += '<div style="flex:1;">';
+      html += '<p class="booking-referral-title">Anfahrtskosten teilen & sparen!</p>';
+      html += '<p class="booking-referral-desc">Empfehlen Sie einen Kunden weiter und Sie zahlen beide nur <strong style="color:#642e8e;">CHF ' + ANFAHRT_REFERRAL + '.\u2013</strong> statt CHF ' + ANFAHRT + '.\u2013 Anfahrt. Limitiert auf die ersten 100 Kunden!</p>';
+      html += '</div></div>';
+      html += '<button type="button" class="booking-referral-btn' + (form.hasReferral ? ' active' : '') + '" data-action="toggle" data-key="hasReferral">';
+      html += '<div class="booking-referral-check">' + (form.hasReferral ? checkSvg() : '') + '</div>';
+      html += 'Ich wurde empfohlen</button>';
+      if (form.hasReferral) {
+        html += '<div class="booking-field" style="margin-top:12px;" data-stop-propagation="true">';
+        html += '<label class="booking-label">Empfehlungscode / Name des Empfehlers</label>';
+        html += '<input class="booking-input" data-key="referralCode" placeholder="z.B. Max Muster oder Code REF-2025" value="' + esc(form.referralCode) + '">';
+        html += '</div>';
+      }
+      html += '</div>';
+      return html;
+    }
+
+    /* ── Price Preview ── */
+    function renderPricePreview(p) {
+      var html = '<div class="booking-price-summary">';
+      html += '<p class="booking-price-label">Preis\u00fcbersicht</p>';
+
+      html += '<div class="booking-price-row"><span class="booking-price-row-label">Reifenwechsel (' + form.zoll + '")</span><span class="booking-price-row-value">CHF ' + p.price + '.\u2013</span></div>';
+
+      html += '<div class="booking-price-row"><span class="booking-price-row-label">Anfahrtskosten';
+      if (form.hasReferral) html += ' <span class="booking-green-tag">-50%</span>';
+      html += '</span><span class="booking-price-row-value">';
+      if (form.hasReferral) html += '<span class="booking-strike">CHF ' + ANFAHRT + '.\u2013</span>';
+      html += 'CHF ' + p.anfahrt + '.\u2013</span></div>';
+
+      if (form.einlagerung) {
+        html += '<div class="booking-price-row"><span class="booking-price-row-label">Reifeneinlagerung</span><span class="booking-price-row-value" style="color:#22c55e;">Auf Anfrage</span></div>';
+      }
+      if (form.neueReifen) {
+        html += '<div class="booking-price-row"><span class="booking-price-row-label">Neue Reifen' + (form.neueReifenMarke ? ' (' + esc(form.neueReifenMarke) + ')' : '') + '</span><span class="booking-price-row-value booking-anfrage">Auf Anfrage</span></div>';
+      }
+      if (form.entsorgung) {
+        html += '<div class="booking-price-row"><span class="booking-price-row-label">Reifenentsorgung (' + form.entsorgungAnzahl + 'x)</span><span class="booking-price-row-value">CHF ' + p.entsorgungTotal + '.\u2013</span></div>';
+      }
+      for (var i = 0; i < form.extras.length; i++) {
+        for (var j = 0; j < EXTRAS.length; j++) {
+          if (EXTRAS[j].id === form.extras[i]) {
+            html += '<div class="booking-price-row"><span class="booking-price-row-label">' + esc(EXTRAS[j].title) + '</span><span class="booking-price-row-value">CHF ' + EXTRAS[j].price + '.\u2013</span></div>';
+          }
+        }
+      }
+
+      html += '<div class="booking-price-divider"></div>';
+      html += '<div class="booking-price-total"><span class="booking-price-total-label">Gesch\u00e4tztes Total</span><span class="booking-price-total-value">CHF ' + p.total + '.\u2013</span></div>';
+      html += '</div>';
+      return html;
+    }
+
+    /* ── Step 4: Kontakt & Termin ── */
+    function renderStep4() {
+      var p = calcPrices();
+      var html = '<h2>Kontaktdaten & Termin</h2>';
+      html += '<p class="booking-subtitle">Wo und wann sollen wir vorbeikommen?</p>';
+      html += '<div class="booking-gap-6">';
+
+      // Name
+      html += '<div class="booking-grid-2">';
+      html += '<div class="booking-field"><label class="booking-label">Vorname <span class="req">*</span></label><input class="booking-input" data-key="vorname" placeholder="Max" value="' + esc(form.vorname) + '">';
+      if (errors.vorname) html += '<p class="booking-error">Pflichtfeld</p>';
+      html += '</div>';
+      html += '<div class="booking-field"><label class="booking-label">Nachname <span class="req">*</span></label><input class="booking-input" data-key="nachname" placeholder="Muster" value="' + esc(form.nachname) + '">';
+      if (errors.nachname) html += '<p class="booking-error">Pflichtfeld</p>';
+      html += '</div>';
+      html += '</div>';
+
+      // Email + Phone
+      html += '<div class="booking-grid-2">';
+      html += '<div class="booking-field"><label class="booking-label">E-Mail <span class="req">*</span></label><input class="booking-input" type="email" data-key="email" placeholder="max@beispiel.ch" value="' + esc(form.email) + '">';
+      if (errors.email) html += '<p class="booking-error">G\u00fcltige E-Mail ben\u00f6tigt</p>';
+      html += '</div>';
+      html += '<div class="booking-field"><label class="booking-label">Telefon <span class="req">*</span></label><input class="booking-input" type="tel" data-key="telefon" placeholder="+41 79 123 45 67" value="' + esc(form.telefon) + '">';
+      if (errors.telefon) html += '<p class="booking-error">Pflichtfeld</p>';
+      html += '</div>';
+      html += '</div>';
+
+      // Location box
+      html += '<div class="booking-location-box">';
+      html += '<p class="booking-location-box-title">Einsatzort (wo sollen wir vorbeikommen?)</p>';
+      html += '<div class="booking-gap-4">';
+      html += '<div class="booking-field"><label class="booking-label">Strasse & Nr. <span class="req">*</span></label><input class="booking-input" data-key="strasse" placeholder="Musterstrasse 12" value="' + esc(form.strasse) + '">';
+      if (errors.strasse) html += '<p class="booking-error">Pflichtfeld</p>';
+      html += '</div>';
+      html += '<div class="booking-grid-3-1">';
+      html += '<div class="booking-field"><label class="booking-label">PLZ <span class="req">*</span></label><input class="booking-input" data-key="plz" placeholder="8400" value="' + esc(form.plz) + '">';
+      if (errors.plz) html += '<p class="booking-error">Pflichtfeld</p>';
+      html += '</div>';
+      html += '<div class="booking-field"><label class="booking-label">Ort <span class="req">*</span></label><input class="booking-input" data-key="ort" placeholder="Winterthur" value="' + esc(form.ort) + '">';
+      if (errors.ort) html += '<p class="booking-error">Pflichtfeld</p>';
+      html += '</div>';
+      html += '</div></div></div>';
+
+      // Date + Time
+      html += '<div class="booking-grid-2">';
+      html += '<div class="booking-field"><label class="booking-label">Wunschdatum <span class="req">*</span></label><input class="booking-input" type="date" data-key="wunschDatum" value="' + esc(form.wunschDatum) + '">';
+      if (errors.wunschDatum) html += '<p class="booking-error">Bitte Datum w\u00e4hlen</p>';
+      html += '</div>';
+      html += '<div class="booking-field"><label class="booking-label">Zeitfenster <span class="req">*</span></label>';
+      html += '<select class="booking-select' + (!form.wunschZeit ? ' placeholder' : '') + '" data-key="wunschZeit">';
+      html += '<option value="">Zeitfenster w\u00e4hlen</option>';
+      for (var i = 0; i < TIME_SLOTS.length; i++) {
+        html += '<option value="' + esc(TIME_SLOTS[i].value) + '"' + (form.wunschZeit === TIME_SLOTS[i].value ? ' selected' : '') + '>' + esc(TIME_SLOTS[i].label) + '</option>';
+      }
+      html += '</select>';
+      if (errors.wunschZeit) html += '<p class="booking-error">Bitte Zeitfenster w\u00e4hlen</p>';
+      if (p.isAbend) {
+        html += '<div class="booking-evening-info"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#f86c20" stroke-width="1.5"/><path d="M10 6v4l2.5 1.5" stroke="#f86c20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Abendzuschlag: +CHF ' + ABEND_ZUSCHLAG + '.\u2013 (ab 18:00 Uhr)</span></div>';
+      }
+      html += '</div></div>';
+
+      // Bemerkungen
+      html += '<div class="booking-field"><label class="booking-label">Bemerkungen (optional)</label><textarea class="booking-input booking-textarea" data-key="bemerkungen" placeholder="Sonstige Informationen, z.B. Parkm\u00f6glichkeiten, Zufahrt, R\u00e4der bereits abmontiert...">' + esc(form.bemerkungen) + '</textarea></div>';
+
+      // Kontaktzeit
+      html += '<div class="booking-field"><label class="booking-label">Wann m\u00f6chten Sie kontaktiert werden? <span class="req">*</span></label>';
+      html += '<select class="booking-select' + (!form.kontaktZeit ? ' placeholder' : '') + '" data-key="kontaktZeit">';
+      html += '<option value="">Bitte w\u00e4hlen</option>';
+      for (var k = 0; k < KONTAKT_ZEITEN.length; k++) {
+        html += '<option value="' + esc(KONTAKT_ZEITEN[k]) + '"' + (form.kontaktZeit === KONTAKT_ZEITEN[k] ? ' selected' : '') + '>' + esc(KONTAKT_ZEITEN[k]) + '</option>';
+      }
+      html += '</select>';
+      if (errors.kontaktZeit) html += '<p class="booking-error">Bitte w\u00e4hlen Sie eine bevorzugte Kontaktzeit.</p>';
+      html += '</div>';
+
+      // Phone info
+      html += '<div class="booking-phone-info">';
+      html += '<div class="booking-phone-info-icon">' + phoneSvg() + '</div>';
+      html += '<div><p class="booking-phone-info-title">Telefonische Best\u00e4tigung</p>';
+      html += '<p class="booking-phone-info-desc">Nach Eingang Ihrer Anfrage werden Sie von uns <strong style="color:#fff;">telefonisch kontaktiert</strong>, um den Termin verbindlich zu best\u00e4tigen und allf\u00e4llige Fragen zu kl\u00e4ren.</p>';
+      html += '</div></div>';
+
+      // AGB
+      html += '<div class="booking-agb">';
+      html += '<div class="booking-agb-check' + (form.agb ? ' checked' : '') + '" data-action="toggle" data-key="agb">' + (form.agb ? checkSvg() : '') + '</div>';
+      html += '<p class="booking-agb-text">Ich bin damit einverstanden, dass meine Daten zur Bearbeitung meiner Anfrage verwendet werden. <span class="req">*</span></p>';
+      html += '</div>';
+      if (errors.agb) html += '<p class="booking-error" style="margin-top:-8px;">Bitte best\u00e4tigen Sie die Datenschutzerkl\u00e4rung.</p>';
+
+      // Final price bar
+      html += '<div class="booking-final-price">';
+      html += '<div><p class="booking-final-price-total-label">Gesch\u00e4tztes Total</p>';
+      html += '<p class="booking-final-price-total-value">CHF ' + p.total + '.\u2013</p></div>';
+      html += '<div class="booking-final-price-details">';
+      html += '<p>Reifenwechsel: CHF ' + p.price + '.\u2013</p>';
+      html += '<p>Anfahrt: CHF ' + p.anfahrt + '.\u2013</p>';
+      if (p.entsorgungTotal + p.extrasTotal > 0) html += '<p>Extras: CHF ' + (p.entsorgungTotal + p.extrasTotal) + '.\u2013</p>';
+      if (p.isAbend) html += '<p>Abendzuschlag: CHF ' + ABEND_ZUSCHLAG + '.\u2013</p>';
+      html += '</div></div>';
+
+      html += '</div>'; // end gap-6
+
+      // Nav
+      html += '<div class="booking-nav">';
+      html += '<button type="button" class="booking-btn-outline" data-action="back">' + arrowLeftSvg() + ' Zur\u00fcck</button>';
+      html += '<button type="button" class="booking-btn-primary submit" data-action="next">Anfrage absenden</button>';
+      html += '</div>';
+
+      formCard.innerHTML = html;
+    }
+
+    /* ── Success Screen ── */
+    function renderSuccess() {
+      var p = calcPrices();
+      var html = '<div class="booking-success">';
+
+      html += '<div class="booking-success-icon"><svg viewBox="0 0 24 24" fill="none" width="40" height="40"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
+      html += '<h2>Vielen Dank, ' + esc(form.vorname) + '!</h2>';
+      html += '<p>Ihre Buchungsanfrage wurde erfolgreich \u00fcbermittelt.</p>';
+
+      // Phone contact info
+      html += '<div class="booking-success-phone-info">';
+      html += '<svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#642e8e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      html += '<p>Wir werden Sie <strong style="color:#642e8e;">telefonisch kontaktieren</strong>';
+      if (form.kontaktZeit && form.kontaktZeit !== 'Jederzeit erreichbar') {
+        html += ' (' + esc(form.kontaktZeit) + ')';
+      }
+      html += ', um Ihren Termin verbindlich zu best\u00e4tigen.</p>';
+      html += '</div>';
+
+      // Summary
+      html += '<div class="booking-success-summary">';
+      html += '<p class="booking-price-label">ZUSAMMENFASSUNG</p>';
+
+      html += '<div class="booking-price-row"><span class="booking-price-row-label">Reifenwechsel (' + form.zoll + '")</span><span class="booking-price-row-value">CHF ' + p.price + '.\u2013</span></div>';
+
+      html += '<div class="booking-price-row"><span class="booking-price-row-label">Anfahrtskosten';
+      if (form.hasReferral) html += ' <span style="color:#22c55e;font-size:0.75rem;margin-left:4px;">Empfehlung</span>';
+      html += '</span><span class="booking-price-row-value">';
+      if (form.hasReferral) html += '<span class="booking-strike">CHF ' + ANFAHRT + '.\u2013</span>';
+      html += 'CHF ' + p.anfahrt + '.\u2013</span></div>';
+
+      if (form.einlagerung) {
+        html += '<div class="booking-price-row"><span class="booking-price-row-label">Reifeneinlagerung</span><span class="booking-price-row-value">Auf Anfrage</span></div>';
+      }
+      if (form.neueReifen) {
+        html += '<div class="booking-price-row"><span class="booking-price-row-label">Neue Reifen' + (form.neueReifenMarke ? ' (' + esc(form.neueReifenMarke) + ')' : '') + '</span><span class="booking-price-row-value booking-anfrage">Auf Anfrage</span></div>';
+      }
+      if (form.entsorgung) {
+        html += '<div class="booking-price-row"><span class="booking-price-row-label">Reifenentsorgung (' + form.entsorgungAnzahl + 'x)</span><span class="booking-price-row-value">CHF ' + p.entsorgungTotal + '.\u2013</span></div>';
+      }
+      for (var i = 0; i < form.extras.length; i++) {
+        for (var j = 0; j < EXTRAS.length; j++) {
+          if (EXTRAS[j].id === form.extras[i]) {
+            html += '<div class="booking-price-row"><span class="booking-price-row-label">' + esc(EXTRAS[j].title) + '</span><span class="booking-price-row-value">CHF ' + EXTRAS[j].price + '.\u2013</span></div>';
+          }
+        }
+      }
+      if (p.isAbend) {
+        html += '<div class="booking-price-row"><span class="booking-price-row-label">Abendzuschlag (ab 18:00)</span><span class="booking-price-row-value" style="color:#f86c20;">CHF ' + ABEND_ZUSCHLAG + '.\u2013</span></div>';
+      }
+
+      html += '<div class="booking-price-divider"></div>';
+      html += '<div class="booking-price-total"><span class="booking-price-total-label">Total</span><span class="booking-price-total-value">CHF ' + p.total + '.\u2013</span></div>';
+      html += '</div>';
+
+      // Referral CTA
+      html += '<div class="booking-success-referral">';
+      html += '<p>Jetzt selbst empfehlen & sparen!</p>';
+      html += '<p>Teilen Sie Ihren Namen als Empfehlung und Sie beide zahlen nur CHF ' + ANFAHRT_REFERRAL + '.\u2013 Anfahrt beim n\u00e4chsten Mal.</p>';
+      html += '</div>';
+
+      html += '<button type="button" class="booking-success-restart" data-action="reset">Neue Anfrage starten</button>';
+      html += '</div>';
+
+      formCard.innerHTML = html;
+    }
+
+    /* ── Summary Bar ── */
+    function renderSummaryBar(isDirectContact) {
+      if (step <= 1 || isDirectContact || submitted) {
+        summaryBar.innerHTML = '';
+        return;
+      }
+      var p = calcPrices();
+      var html = '<div class="booking-summary-bar">';
+      html += '<span class="booking-summary-pill purple">Reifenwechsel</span>';
+      if (form.fahrzeugTyp) html += '<span class="booking-summary-pill orange">' + esc(form.fahrzeugTyp) + '</span>';
+      html += '<span class="booking-summary-pill orange">' + form.zoll + '"</span>';
+      if (form.einlagerung) html += '<span class="booking-summary-pill green">Einlagerung</span>';
+      if (form.neueReifen) html += '<span class="booking-summary-pill orange">Neue Reifen</span>';
+      if (form.entsorgung) html += '<span class="booking-summary-pill green">Entsorgung</span>';
+      if (form.extras.length > 0) html += '<span class="booking-summary-pill purple">' + form.extras.length + ' Extra' + (form.extras.length > 1 ? 's' : '') + '</span>';
+      html += '<span class="booking-summary-pill total">CHF ' + p.total + '.\u2013</span>';
+      html += '</div>';
+      summaryBar.innerHTML = html;
+    }
+
+
+    /* ═══════════════════════════════════════════
+       EVENT DELEGATION
+       ═══════════════════════════════════════════ */
+
+    formCard.addEventListener('click', function(e) {
+      var target = e.target;
+
+      // Check if click is inside a [data-stop-propagation] container but NOT on a button inside it
+      // (We want inputs inside expanded toggles to be clickable without toggling)
+      var stopProp = target.closest('[data-stop-propagation]');
+      if (stopProp && !target.closest('[data-action]')) {
+        return;
+      }
+
+      // Find closest action element
+      var actionEl = target.closest('[data-action]');
+      if (!actionEl) return;
+
+      var action = actionEl.getAttribute('data-action');
+      var key = actionEl.getAttribute('data-key');
+      var value = actionEl.getAttribute('data-value');
+
+      switch (action) {
+        case 'select-service':
+          setVal('service', value);
+          if (value === 'wechsel') {
+            render();
+            setTimeout(function() { step = 2; errors = {}; render(); }, 300);
+          } else {
+            render();
+          }
+          break;
+
+        case 'clear-service':
+          setVal('service', '');
+          render();
+          break;
+
+        case 'set':
+          if (key === 'neueReifenWieBisher') {
+            setVal(key, value === 'true');
+          } else {
+            setVal(key, value);
+          }
+          render();
+          if (step === 2) { initSliderEvents(); initUploadEvents(); }
+          break;
+
+        case 'toggle':
+          if (key === 'neueReifen') {
+            setVal('neueReifen', !form.neueReifen);
+            render();
+            if (step === 2) { initSliderEvents(); initUploadEvents(); }
+          } else if (key === 'einlagerung') {
+            setVal('einlagerung', !form.einlagerung);
+            render();
+          } else if (key === 'entsorgung') {
+            setVal('entsorgung', !form.entsorgung);
+            render();
+          } else if (key === 'hasReferral') {
+            setVal('hasReferral', !form.hasReferral);
+            render();
+          } else if (key === 'agb') {
+            setVal('agb', !form.agb);
+            render();
+          } else if (key && key.startsWith('extra-')) {
+            var extraId = key.replace('extra-', '');
+            toggleExtra(extraId);
+            render();
+          }
+          break;
+
+        case 'entsorgung-minus':
+          e.stopPropagation();
+          setVal('entsorgungAnzahl', Math.max(1, form.entsorgungAnzahl - 1));
+          render();
+          break;
+
+        case 'entsorgung-plus':
+          e.stopPropagation();
+          setVal('entsorgungAnzahl', Math.min(8, form.entsorgungAnzahl + 1));
+          render();
+          break;
+
+        case 'next':
+          handleNext();
+          break;
+
+        case 'back':
+          handleBack();
+          break;
+
+        case 'reset':
+          resetForm();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          break;
+      }
+    });
+
+    // Input handling with event delegation
+    formCard.addEventListener('input', function(e) {
+      var target = e.target;
+      var key = target.getAttribute('data-key');
+      if (key) {
+        form[key] = target.value;
+        if (errors[key]) delete errors[key];
+      }
+    });
+
+    formCard.addEventListener('change', function(e) {
+      var target = e.target;
+      var key = target.getAttribute('data-key');
+      if (key && (target.tagName === 'SELECT')) {
+        form[key] = target.value;
+        if (errors[key]) delete errors[key];
+
+        // Remove placeholder class when a value is selected
+        if (target.value) {
+          target.classList.remove('placeholder');
+        } else {
+          target.classList.add('placeholder');
+        }
+
+        // If wunschZeit changed, re-render to show/hide evening surcharge
+        if (key === 'wunschZeit') {
+          render();
+        }
+      }
+    });
+
+    /* ═══ INITIAL RENDER ═══ */
+    render();
+
+  })();
+  </script>
+
+</body>
+</html>

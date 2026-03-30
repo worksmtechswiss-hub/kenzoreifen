@@ -1,0 +1,100 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Winterthur Hub
+[[redirects]]
+  from = "/winterthur"
+  to = "/winterthur/"
+  status = 301
+  force = true
+
+# Winterthur Stadtteile
+[[redirects]]
+  from = "/winterthur/oberwinterthur"
+  to = "/winterthur/oberwinterthur.html"
+  status = 200
+
+[[redirects]]
+  from = "/winterthur/toess"
+  to = "/winterthur/toess.html"
+  status = 200
+
+[[redirects]]
+  from = "/winterthur/seen"
+  to = "/winterthur/seen.html"
+  status = 200
+
+[[redirects]]
+  from = "/winterthur/veltheim"
+  to = "/winterthur/veltheim.html"
+  status = 200
+
+[[redirects]]
+  from = "/winterthur/wuelflingen"
+  to = "/winterthur/wuelflingen.html"
+  status = 200
+
+[[redirects]]
+  from = "/winterthur/mattenbach"
+  to = "/winterthur/mattenbach.html"
+  status = 200
+
+[[redirects]]
+  from = "/winterthur/hegi"
+  to = "/winterthur/hegi.html"
+  status = 200
+
+# Umland
+[[redirects]]
+  from = "/umland/effretikon"
+  to = "/umland/effretikon.html"
+  status = 200
+
+[[redirects]]
+  from = "/umland/seuzach"
+  to = "/umland/seuzach.html"
+  status = 200
+
+[[redirects]]
+  from = "/umland/neftenbach"
+  to = "/umland/neftenbach.html"
+  status = 200
+
+# Hauptseiten
+[[redirects]]
+  from = "/leistungen"
+  to = "/leistungen.html"
+  status = 200
+
+[[redirects]]
+  from = "/preise"
+  to = "/preise.html"
+  status = 200
+
+[[redirects]]
+  from = "/kontakt"
+  to = "/kontakt.html"
+  status = 200
+
+# Blog
+[[redirects]]
+  from = "/blog/wann-winterreifen-wechseln"
+  to = "/blog/wann-winterreifen-wechseln.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/reifenwechsel-kosten"
+  to = "/blog/reifenwechsel-kosten.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/reifenpflege-tipps"
+  to = "/blog/reifenpflege-tipps.html"
+  status = 200

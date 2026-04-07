@@ -1356,9 +1356,55 @@
       if (step === 2 && !validateStep2()) { render(); return; }
       if (step === 4) {
         if (!validateStep4()) { render(); return; }
-        submitted = true;
-        render();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Submit to Formspree
+        var p = calcPrices();
+        var payload = {
+          service: form.serviceArt === 'reifenwechsel' ? 'Reifenwechsel' : 'Radwechsel',
+          zoll: form.zoll + '"',
+          preis: 'CHF ' + p.price + '.–',
+          anfahrtZone: form.anfahrtZone === 'umkreis' ? 'Umkreis 30km' : 'Winterthur',
+          anfahrt: 'CHF ' + p.anfahrt + '.–',
+          fahrzeugTyp: form.fahrzeugTyp,
+          fahrzeugMarke: form.fahrzeugMarke,
+          fahrzeugModell: form.fahrzeugModell,
+          felgenTyp: form.felgenTyp,
+          reifenTyp: form.reifenTyp || '-',
+          reifenDimensionen: form.reifenDimensionen || '-',
+          neueReifen: form.neueReifen ? 'Ja' : 'Nein',
+          neueReifenMarke: form.neueReifenMarke || '-',
+          neueReifenDimensionen: form.neueReifenWieBisher ? 'Wie bisher' : (form.neueReifenDimensionen || '-'),
+          entsorgung: form.entsorgung ? form.entsorgungAnzahl + ' Reifen (CHF ' + p.entsorgungTotal + '.–)' : 'Nein',
+          extras: form.extras.length ? form.extras.join(', ') : 'Keine',
+          vorname: form.vorname,
+          nachname: form.nachname,
+          email: form.email,
+          telefon: form.telefon,
+          strasse: form.strasse,
+          plz: form.plz,
+          ort: form.ort,
+          wunschDatum: form.wunschDatum,
+          wunschZeit: form.wunschZeit,
+          kontaktZeit: form.kontaktZeit || 'Jederzeit',
+          bemerkungen: form.bemerkungen || '-',
+          total: 'CHF ' + p.total + '.–',
+          _subject: 'Neue Buchung: ' + form.vorname + ' ' + form.nachname + ' – ' + (form.serviceArt === 'reifenwechsel' ? 'Reifenwechsel' : 'Radwechsel') + ' ' + form.zoll + '"'
+        };
+        // Show loading state
+        var nextBtn = formCard.querySelector('[data-action="next"]');
+        if (nextBtn) { nextBtn.textContent = 'Wird gesendet...'; nextBtn.disabled = true; }
+        fetch('https://formspree.io/f/xojprzpy', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function(res) {
+          submitted = true;
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }).catch(function(err) {
+          submitted = true;
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
         return;
       }
       step++;

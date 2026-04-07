@@ -2570,10 +2570,15 @@
     formCard.addEventListener('click', function(e) {
       var target = e.target;
 
-      // Check if click is inside a [data-stop-propagation] container but NOT on a button inside it
-      // (We want inputs inside expanded toggles to be clickable without toggling)
+      // Never intercept clicks on form inputs
+      var tag = target.tagName.toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select' || tag === 'label') {
+        return;
+      }
+
+      // Check if click is inside a [data-stop-propagation] container
       var stopProp = target.closest('[data-stop-propagation]');
-      if (stopProp && !target.closest('[data-action]')) {
+      if (stopProp && !target.closest('button[data-action]')) {
         return;
       }
 

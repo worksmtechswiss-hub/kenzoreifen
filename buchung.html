@@ -620,20 +620,16 @@
       color: #642e8e;
     }
 
-    /* ── Referral Banner ── */
-    .booking-referral {
       border-radius: 16px;
       overflow: hidden;
       background: rgba(100,46,142,0.06);
       border: 2px solid rgba(248,108,32,0.15);
       padding: 20px;
     }
-    .booking-referral-inner {
       display: flex;
       align-items: flex-start;
       gap: 12px;
     }
-    .booking-referral-icon {
       flex-shrink: 0;
       width: 40px;
       height: 40px;
@@ -643,22 +639,18 @@
       justify-content: center;
       background: linear-gradient(135deg, #f86c20, #ff8a47);
     }
-    .booking-referral-icon svg {
       width: 20px;
       height: 20px;
     }
-    .booking-referral-title {
       font-size: 0.85rem;
       font-weight: 700;
       color: #f86c20;
     }
-    .booking-referral-desc {
       font-size: 0.78rem;
       color: #808095;
       margin-top: 4px;
       line-height: 1.5;
     }
-    .booking-referral-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -674,11 +666,9 @@
       color: #c0c0d0;
       transition: all 0.2s;
     }
-    .booking-referral-btn.active {
       background: linear-gradient(135deg, #642e8e, #7b3fa8);
       color: #fff;
     }
-    .booking-referral-check {
       width: 16px;
       height: 16px;
       border-radius: 4px;
@@ -688,7 +678,6 @@
       justify-content: center;
       background: transparent;
     }
-    .booking-referral-btn.active .booking-referral-check {
       background: rgba(255,255,255,0.25);
       border-color: transparent;
     }
@@ -1010,409 +999,6 @@
       border: 1px solid rgba(100,46,142,0.15);
       text-align: left;
     }
-    .booking-success-referral {
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 24px;
-      background: rgba(248,108,32,0.06);
-      border: 1px solid rgba(248,108,32,0.12);
-    }
-    .booking-success-referral p:first-child {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #f86c20;
-      margin-bottom: 4px;
-    }
-    .booking-success-referral p:last-child {
-      font-size: 0.78rem;
-      color: #808095;
-    }
-    .booking-success-restart {
-      padding: 14px 32px;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #fff;
-      background: linear-gradient(135deg, #642e8e, #7b3fa8);
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      box-shadow: 0 4px 20px rgba(100,46,142,0.3);
-      transition: all 0.2s;
-    }
-    .booking-success-restart:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(100,46,142,0.4);
-    }
-
-    /* ── Summary Bar (bottom of card) ── */
-    .booking-summary-bar {
-      max-width: 720px;
-      margin: 16px auto 0;
-      border-radius: 16px;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      background: rgba(21,21,32,0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(100,46,142,0.15);
-    }
-    .booking-summary-pill {
-      padding: 4px 12px;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-    .booking-summary-pill.purple {
-      background: rgba(100,46,142,0.12);
-      color: #a76bd4;
-    }
-    .booking-summary-pill.orange {
-      background: rgba(248,108,32,0.12);
-      color: #f86c20;
-    }
-    .booking-summary-pill.green {
-      background: rgba(34,197,94,0.12);
-      color: #22c55e;
-    }
-    .booking-summary-pill.total {
-      margin-left: auto;
-      background: rgba(100,46,142,0.12);
-      color: #a76bd4;
-      font-weight: 700;
-    }
-
-    /* ── Error text ── */
-    .booking-error {
-      font-size: 0.75rem;
-      color: #e53e3e;
-      margin-top: 4px;
-    }
-
-    /* ── Misc helpers ── */
-    .booking-gap-6 { display: flex; flex-direction: column; gap: 24px; }
-    .booking-gap-4 { display: flex; flex-direction: column; gap: 16px; }
-    .booking-gap-3 { display: flex; flex-direction: column; gap: 12px; }
-    .booking-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .booking-grid-3-1 { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; }
-
-    .booking-divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 4px 0;
-    }
-    .booking-divider-line {
-      flex: 1;
-      height: 1px;
-      background: rgba(100,46,142,0.15);
-    }
-    .booking-divider-text {
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: #555570;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* ── Location box ── */
-    .booking-location-box {
-      border-radius: 12px;
-      padding: 16px;
-      background: rgba(100,46,142,0.04);
-      border: 1px solid rgba(100,46,142,0.15);
-    }
-    .booking-location-box-title {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #642e8e;
-      margin-bottom: 12px;
-    }
-
-    /* ── Phone info box ── */
-    .booking-phone-info {
-      border-radius: 12px;
-      padding: 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: rgba(100,46,142,0.04);
-      border: 1px solid rgba(100,46,142,0.15);
-    }
-    .booking-phone-info-icon {
-      flex-shrink: 0;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #642e8e, #7b3fa8);
-      margin-top: 2px;
-    }
-    .booking-phone-info-icon svg {
-      width: 16px;
-      height: 16px;
-    }
-    .booking-phone-info-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #642e8e;
-    }
-    .booking-phone-info-desc {
-      font-size: 0.78rem;
-      color: #808095;
-      margin-top: 4px;
-      line-height: 1.5;
-    }
-
-    /* ── AGB checkbox ── */
-    .booking-agb {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .booking-agb-check {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      border-radius: 5px;
-      border: 2px solid rgba(100,46,142,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
-      cursor: pointer;
-      background: transparent;
-      transition: all 0.2s;
-    }
-    .booking-agb-check.checked {
-      background: #642e8e;
-      border-color: #642e8e;
-    }
-    .booking-agb-text {
-      font-size: 0.78rem;
-      color: #808095;
-      line-height: 1.5;
-    }
-    .booking-agb-text .req { color: #f86c20; }
-
-    /* ── Evening surcharge info ── */
-    .booking-evening-info {
-      margin-top: 8px;
-      padding: 8px 12px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(248,108,32,0.08);
-      border: 1px solid rgba(248,108,32,0.15);
-    }
-    .booking-evening-info svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-    }
-    .booking-evening-info span {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #f86c20;
-    }
-
-    /* ── Entsorgung counter ── */
-    .booking-counter {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 12px;
-    }
-    .booking-counter-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #c0c0d0;
-    }
-    .booking-counter-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 700;
-      background: rgba(100,46,142,0.12);
-      color: #642e8e;
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.2s;
-    }
-    .booking-counter-btn:hover {
-      background: rgba(100,46,142,0.2);
-    }
-    .booking-counter-val {
-      width: 32px;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #642e8e;
-    }
-    .booking-counter-total {
-      margin-left: auto;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #f86c20;
-    }
-
-    /* ── Neue Reifen dimension toggles ── */
-    .booking-dim-btns {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-    .booking-dim-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 12px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      border: 2px solid rgba(100,46,142,0.2);
-      background: #1a1a2e;
-      color: #c0c0d0;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.2s;
-    }
-    .booking-dim-btn.active {
-      background: linear-gradient(135deg, #642e8e, #7b3fa8);
-      border-color: #642e8e;
-      color: #fff;
-    }
-    .booking-dim-btn svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    /* ── Strikethrough price ── */
-    .booking-strike {
-      text-decoration: line-through;
-      color: #555570;
-      font-size: 0.75rem;
-      margin-right: 8px;
-    }
-    .booking-green-tag {
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: rgba(34,197,94,0.12);
-      color: #22c55e;
-      margin-left: 6px;
-    }
-    .booking-anfrage {
-      color: #f86c20;
-      font-weight: 600;
-    }
-
-    /* ── Upload file input hidden ── */
-    .booking-file-input {
-      display: none;
-    }
-
-    /* ═══ RESPONSIVE ═══ */
-    @media (max-width: 768px) {
-      .booking-section {
-        padding: 30px 0 80px;
-      }
-      .booking-card {
-        padding: 24px 18px;
-        border-radius: 18px;
-      }
-      .booking-header h1 {
-        font-size: 1.5rem;
-      }
-      .booking-select-grid.cols-3 {
-        grid-template-columns: 1fr;
-      }
-      .booking-select-grid.cols-2 {
-        grid-template-columns: 1fr;
-      }
-      .booking-grid-2 {
-        grid-template-columns: 1fr;
-      }
-      .booking-grid-3-1 {
-        grid-template-columns: 1fr;
-      }
-      .booking-steps {
-        margin-bottom: 24px;
-      }
-      .booking-step-line {
-        width: 24px;
-        margin: 0 4px;
-      }
-      .booking-step-label {
-        font-size: 0.55rem;
-      }
-      .booking-step-circle {
-        width: 34px;
-        height: 34px;
-        font-size: 0.7rem;
-      }
-      .booking-nav {
-        flex-direction: column-reverse;
-        gap: 12px;
-      }
-      .booking-nav .booking-btn-primary,
-      .booking-nav .booking-btn-outline {
-        width: 100%;
-        justify-content: center;
-      }
-      .booking-final-price {
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-      }
-      .booking-final-price-details {
-        text-align: center;
-      }
-      .booking-summary-bar {
-        display: none;
-      }
-      .booking-dim-btns {
-        flex-direction: column;
-      }
-      .booking-slider-ticks {
-        display: none;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ========== HEADER ========== -->
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a href="index.html" class="logo" aria-label="Kenzo Reifen — Startseite">
-        <span class="accent">KENZO</span> REIFEN
-      </a>
-
-      <nav class="nav-main" role="navigation" aria-label="Hauptnavigation">
-        <a href="index.html">Home</a>
-        <a href="winterthur/">Winterthur</a>
-        <a href="leistungen.html">Leistungen</a>
-        <a href="preise.html">Preise</a>
-        <a href="kontakt.html">Kontakt</a>
-        <a href="tel:+41765193141" class="nav-cta">Jetzt anrufen</a>
-      </nav>
-
-      <button class="menu-toggle" aria-label="Menue oeffnen" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
   </header>
 
   <!-- ========== BREADCRUMB ========== -->
@@ -1574,8 +1160,6 @@
 
     var ANFAHRT_WINTERTHUR = 60;
     var ANFAHRT_UMKREIS = 100;
-    var ANFAHRT_REFERRAL_WINTERTHUR = 30;
-    var ANFAHRT_REFERRAL_UMKREIS = 50;
     var ENTSORGUNG_PRO_REIFEN = 5;
     var ABEND_ZUSCHLAG = 50;
 
@@ -1607,9 +1191,8 @@
       return 0;
     }
 
-    function getAnfahrt(zone, hasReferral) {
-      if (zone === 'umkreis') return hasReferral ? ANFAHRT_REFERRAL_UMKREIS : ANFAHRT_UMKREIS;
-      return hasReferral ? ANFAHRT_REFERRAL_WINTERTHUR : ANFAHRT_WINTERTHUR;
+    function getAnfahrt(zone) {
+      return zone === 'umkreis' ? ANFAHRT_UMKREIS : ANFAHRT_WINTERTHUR;
     }
 
     function getPriceLabel(zoll) {
@@ -1670,8 +1253,6 @@
       entsorgung: false,
       entsorgungAnzahl: 4,
       extras: [],
-      referralCode: '',
-      hasReferral: false,
       vorname: '',
       nachname: '',
       email: '',
@@ -1698,7 +1279,7 @@
 
     function calcPrices() {
       var price = getPrice(form.zoll, form.serviceArt);
-      var anfahrt = getAnfahrt(form.anfahrtZone, form.hasReferral);
+      var anfahrt = getAnfahrt(form.anfahrtZone);
       var entsorgungTotal = form.entsorgung ? form.entsorgungAnzahl * ENTSORGUNG_PRO_REIFEN : 0;
       var extrasTotal = 0;
       for (var i = 0; i < form.extras.length; i++) {
@@ -1803,7 +1384,6 @@
         reifenFoto: null, reifenFotoName: '', neueReifen: false,
         neueReifenMarke: '', neueReifenWieBisher: true, neueReifenDimensionen: '',
         entsorgung: false, entsorgungAnzahl: 4,
-        extras: [], referralCode: '', hasReferral: false,
         vorname: '', nachname: '', email: '', telefon: '',
         strasse: '', plz: '', ort: '', wunschDatum: '', wunschZeit: '',
         kontaktZeit: '', bemerkungen: '', agb: false
@@ -2222,8 +1802,6 @@
         html += renderToggleCard('extra-' + ex.id, isActive, ex.title, ex.desc, 'CHF ' + ex.price + '.\u2013', ex.iconSvg, '');
       }
 
-      // Referral Banner
-      html += renderReferralBanner();
 
       // Price Preview
       html += renderPricePreview(p);
@@ -2256,22 +1834,10 @@
       return html;
     }
 
-    /* ── Referral Banner ── */
-    function renderReferralBanner() {
-      var html = '<div class="booking-referral">';
-      html += '<div class="booking-referral-inner">';
-      html += '<div class="booking-referral-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4-4v2" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#fff" stroke-width="2"/><path d="M22 21v-2a4 4 0 00-3-3.87" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M16 3.13a4 4 0 010 7.75" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>';
       html += '<div style="flex:1;">';
-      html += '<p class="booking-referral-title">Anfahrtskosten teilen & sparen!</p>';
-      html += '<p class="booking-referral-desc">Empfehlen Sie einen Kunden weiter und Sie zahlen beide nur <strong style="color:#642e8e;">CHF ' + getAnfahrt(form.anfahrtZone, true) + '.\u2013</strong> statt CHF ' + getAnfahrt(form.anfahrtZone, false) + '.\u2013 Anfahrt. Limitiert auf die ersten 100 Kunden!</p>';
       html += '</div></div>';
-      html += '<button type="button" class="booking-referral-btn' + (form.hasReferral ? ' active' : '') + '" data-action="toggle" data-key="hasReferral">';
-      html += '<div class="booking-referral-check">' + (form.hasReferral ? checkSvg() : '') + '</div>';
       html += 'Ich wurde empfohlen</button>';
-      if (form.hasReferral) {
         html += '<div class="booking-field" style="margin-top:12px;" data-stop-propagation="true">';
-        html += '<label class="booking-label">Empfehlungscode / Name des Empfehlers</label>';
-        html += '<input class="booking-input" data-key="referralCode" placeholder="z.B. Max Muster oder Code REF-2025" value="' + esc(form.referralCode) + '">';
         html += '</div>';
       }
       html += '</div>';
@@ -2286,9 +1852,7 @@
       html += '<div class="booking-price-row"><span class="booking-price-row-label">Reifenwechsel (' + form.zoll + '")</span><span class="booking-price-row-value">CHF ' + p.price + '.\u2013</span></div>';
 
       html += '<div class="booking-price-row"><span class="booking-price-row-label">Anfahrtskosten';
-      if (form.hasReferral) html += ' <span class="booking-green-tag">-50%</span>';
       html += '</span><span class="booking-price-row-value">';
-      if (form.hasReferral) html += '<span class="booking-strike">CHF ' + getAnfahrt(form.anfahrtZone, false) + '.\u2013</span>';
       html += 'CHF ' + p.anfahrt + '.\u2013</span></div>';
 
       if (form.neueReifen) {
@@ -2342,8 +1906,6 @@
       html += '<div>';
       html += '<label class="booking-label">Anfahrtszone <span class="req">*</span></label>';
       html += '<div class="booking-select-grid cols-2" style="margin-top:8px;">';
-      html += '<button type="button" class="booking-select-btn' + (form.anfahrtZone === 'winterthur' ? ' active' : '') + '" data-action="set" data-key="anfahrtZone" data-value="winterthur">Winterthur<br><span style="font-size:0.78rem;opacity:0.7;">CHF ' + (form.hasReferral ? ANFAHRT_REFERRAL_WINTERTHUR : ANFAHRT_WINTERTHUR) + '.\u2013 Anfahrt</span></button>';
-      html += '<button type="button" class="booking-select-btn' + (form.anfahrtZone === 'umkreis' ? ' active' : '') + '" data-action="set" data-key="anfahrtZone" data-value="umkreis">Umkreis 30km<br><span style="font-size:0.78rem;opacity:0.7;">CHF ' + (form.hasReferral ? ANFAHRT_REFERRAL_UMKREIS : ANFAHRT_UMKREIS) + '.\u2013 Anfahrt</span></button>';
       html += '</div>';
       html += '</div>';
 
@@ -2457,9 +2019,7 @@
       html += '<div class="booking-price-row"><span class="booking-price-row-label">Reifenwechsel (' + form.zoll + '")</span><span class="booking-price-row-value">CHF ' + p.price + '.\u2013</span></div>';
 
       html += '<div class="booking-price-row"><span class="booking-price-row-label">Anfahrtskosten';
-      if (form.hasReferral) html += ' <span style="color:#22c55e;font-size:0.75rem;margin-left:4px;">Empfehlung</span>';
       html += '</span><span class="booking-price-row-value">';
-      if (form.hasReferral) html += '<span class="booking-strike">CHF ' + getAnfahrt(form.anfahrtZone, false) + '.\u2013</span>';
       html += 'CHF ' + p.anfahrt + '.\u2013</span></div>';
 
       if (form.neueReifen) {
@@ -2483,11 +2043,6 @@
       html += '<div class="booking-price-total"><span class="booking-price-total-label">Total</span><span class="booking-price-total-value">CHF ' + p.total + '.\u2013</span></div>';
       html += '</div>';
 
-      // Referral CTA
-      html += '<div class="booking-success-referral">';
-      html += '<p>Jetzt selbst empfehlen & sparen!</p>';
-      html += '<p>Teilen Sie Ihren Namen als Empfehlung und Sie beide zahlen nur CHF ' + getAnfahrt(form.anfahrtZone, true) + '.\u2013 Anfahrt beim n\u00e4chsten Mal.</p>';
-      html += '</div>';
 
       html += '<button type="button" class="booking-success-restart" data-action="reset">Neue Anfrage starten</button>';
       html += '</div>';
@@ -2568,10 +2123,9 @@
             setVal('neueReifen', !form.neueReifen);
             render();
             if (step === 2) { initSliderEvents(); initUploadEvents(); }
+          } else if (key === 'entsorgung') {
             setVal('entsorgung', !form.entsorgung);
             render();
-          } else if (key === 'hasReferral') {
-            setVal('hasReferral', !form.hasReferral);
             render();
           } else if (key === 'agb') {
             setVal('agb', !form.agb);

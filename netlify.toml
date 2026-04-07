@@ -8,12 +8,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Winterthur Hub
-[[redirects]]
-  from = "/winterthur"
-  to = "/winterthur/"
-  status = 301
-  force = true
+# Winterthur Hub (no forced redirect — Netlify handles trailing slash natively)
 
 # Winterthur Stadtteile
 [[redirects]]

@@ -2250,8 +2250,16 @@
         // Reifendimensionen
         html += '<div class="booking-field"><label class="booking-label">Reifendimensionen (falls bekannt)</label><input class="booking-input" data-key="reifenDimensionen" placeholder="z.B. 225/45 R17" value="' + esc(form.reifenDimensionen) + '"></div>';
 
-        // Markenwunsch
-        html += '<div class="booking-field"><label class="booking-label">Markenwunsch</label><input class="booking-input" data-key="neueReifenMarke" placeholder="z.B. Michelin, Continental, Pirelli, Bridgestone..." value="' + esc(form.neueReifenMarke) + '"></div>';
+        // Markenwunsch (Dropdown)
+        html += '<div class="booking-field"><label class="booking-label">Markenwunsch</label>';
+        html += '<select class="booking-input" data-key="neueReifenMarke" style="appearance:auto;-webkit-appearance:auto;">';
+        html += '<option value=""' + (!form.neueReifenMarke ? ' selected' : '') + '>Bitte w\u00e4hlen...</option>';
+        var marken = ['Michelin','Continental','Pirelli','Bridgestone','Goodyear','Dunlop','Hankook','Nokian','Vredestein','Kumho'];
+        for (var m = 0; m < marken.length; m++) {
+          html += '<option value="' + marken[m] + '"' + (form.neueReifenMarke === marken[m] ? ' selected' : '') + '>' + marken[m] + '</option>';
+        }
+        html += '<option value="Andere"' + (form.neueReifenMarke === 'Andere' ? ' selected' : '') + '>Andere / Egal</option>';
+        html += '</select></div>';
 
         // Gewünschte Dimensionen (wie bisher oder andere)
         html += '<div><label class="booking-label" style="display:block;margin-bottom:8px;">Gew\u00fcnschte Dimensionen</label>';

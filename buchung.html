@@ -2261,16 +2261,7 @@
         html += '<option value="Andere"' + (form.neueReifenMarke === 'Andere' ? ' selected' : '') + '>Andere / Egal</option>';
         html += '</select></div>';
 
-        // Gewünschte Dimensionen (wie bisher oder andere)
-        html += '<div><label class="booking-label" style="display:block;margin-bottom:8px;">Gew\u00fcnschte Dimensionen</label>';
-        html += '<div class="booking-dim-btns">';
-        html += '<button type="button" class="booking-dim-btn' + (form.neueReifenWieBisher ? ' active' : '') + '" data-action="set" data-key="neueReifenWieBisher" data-value="true">' + (form.neueReifenWieBisher ? checkSvg() : '<span style="width:12px;height:12px;display:inline-block;"></span>') + ' Wie bisher</button>';
-        html += '<button type="button" class="booking-dim-btn' + (!form.neueReifenWieBisher ? ' active' : '') + '" data-action="set" data-key="neueReifenWieBisher" data-value="false">' + (!form.neueReifenWieBisher ? checkSvg() : '<span style="width:12px;height:12px;display:inline-block;"></span>') + ' Andere Dimension</button>';
         html += '</div>';
-        if (!form.neueReifenWieBisher) {
-          html += '<div class="booking-field" style="margin-top:8px;"><input class="booking-input" data-key="neueReifenDimensionen" placeholder="z.B. 225/45 R17" value="' + esc(form.neueReifenDimensionen) + '"></div>';
-        }
-        html += '</div></div>';
       }
 
       html += '</div>';

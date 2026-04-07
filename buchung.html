@@ -999,6 +999,28 @@
       border: 1px solid rgba(100,46,142,0.15);
       text-align: left;
     }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="Kenzo Reifen — Startseite">
+        <span class="accent">KENZO</span> REIFEN
+      </a>
+      <nav class="nav-main" role="navigation" aria-label="Hauptnavigation">
+        <a href="index.html">Home</a>
+        <a href="winterthur/">Winterthur</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="preise.html">Preise</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="buchung.html" class="nav-cta">Jetzt buchen</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
 
   <!-- ========== BREADCRUMB ========== -->
@@ -1877,16 +1899,6 @@
       html += '</div>';
       html += '<div class="booking-checkbox">' + (active ? checkSvg() : '') + '</div>';
       html += '</div></div>';
-      return html;
-    }
-
-      html += '<div style="flex:1;">';
-      html += '</div></div>';
-      html += 'Ich wurde empfohlen</button>';
-        html += '<div class="booking-field" style="margin-top:12px;" data-stop-propagation="true">';
-        html += '</div>';
-      }
-      html += '</div>';
       return html;
     }
 

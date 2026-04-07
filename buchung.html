@@ -1701,6 +1701,8 @@
       zoll: 17,
       reifenTyp: '',
       reifenDimensionen: '',
+      reifenDimensionenHinten: '',
+      unterschiedlicheDimensionen: false,
       reifenFoto: null,
       reifenFotoName: '',
       neueReifen: false,
@@ -1827,6 +1829,7 @@
           felgenTyp: form.felgenTyp,
           reifenTyp: form.reifenTyp || '-',
           reifenDimensionen: form.reifenDimensionen || '-',
+          reifenDimensionenHinten: form.unterschiedlicheDimensionen ? (form.reifenDimensionenHinten || '-') : 'Gleich wie vorne',
           neueReifen: form.neueReifen ? 'Ja' : 'Nein',
           neueReifenMarke: form.neueReifenMarke || '-',
           neueReifenDimensionen: form.neueReifenWieBisher ? 'Wie bisher' : (form.neueReifenDimensionen || '-'),
@@ -1883,7 +1886,7 @@
       form = {
         service: '', serviceArt: 'radwechsel', anfahrtZone: 'winterthur',
         fahrzeugTyp: '', fahrzeugMarke: '', fahrzeugModell: '',
-        felgenTyp: '', zoll: 17, reifenTyp: '', reifenDimensionen: '',
+        felgenTyp: '', zoll: 17, reifenTyp: '', reifenDimensionen: '', reifenDimensionenHinten: '', unterschiedlicheDimensionen: false,
         reifenFoto: null, reifenFotoName: '', neueReifen: false,
         neueReifenMarke: '', neueReifenWieBisher: true, neueReifenDimensionen: '',
         entsorgung: false, entsorgungAnzahl: 4,
@@ -2248,7 +2251,17 @@
         html += '</div>';
 
         // Reifendimensionen
-        html += '<div class="booking-field"><label class="booking-label">Reifendimensionen (falls bekannt)</label><input class="booking-input" data-key="reifenDimensionen" placeholder="z.B. 225/45 R17" value="' + esc(form.reifenDimensionen) + '"></div>';
+        html += '<div class="booking-field"><label class="booking-label">' + (form.unterschiedlicheDimensionen ? 'Reifendimensionen vorne' : 'Reifendimensionen (falls bekannt)') + '</label><input class="booking-input" data-key="reifenDimensionen" placeholder="z.B. 225/45 R17" value="' + esc(form.reifenDimensionen) + '"></div>';
+        // Toggle für unterschiedliche Dimensionen
+        html += '<div style="display:flex;align-items:center;gap:10px;cursor:pointer;" data-action="toggle" data-key="unterschiedlicheDimensionen">';
+        html += '<div style="width:18px;height:18px;border-radius:4px;border:2px solid ' + (form.unterschiedlicheDimensionen ? '#642e8e' : 'rgba(100,46,142,0.3)') + ';background:' + (form.unterschiedlicheDimensionen ? '#642e8e' : 'transparent') + ';display:flex;align-items:center;justify-content:center;flex-shrink:0;">';
+        if (form.unterschiedlicheDimensionen) html += '<svg viewBox="0 0 16 16" fill="none" width="12" height="12"><path d="M3 8.5l3 3 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        html += '</div>';
+        html += '<span style="font-size:0.82rem;color:#808095;">Unterschiedliche Dimensionen vorne/hinten</span>';
+        html += '</div>';
+        if (form.unterschiedlicheDimensionen) {
+          html += '<div class="booking-field"><label class="booking-label">Reifendimensionen hinten</label><input class="booking-input" data-key="reifenDimensionenHinten" placeholder="z.B. 255/40 R17" value="' + esc(form.reifenDimensionenHinten) + '"></div>';
+        }
 
         // Markenwunsch (Dropdown)
         html += '<div class="booking-field"><label class="booking-label">Markenwunsch</label>';
@@ -2627,6 +2640,10 @@
           } else if (key === 'agb') {
             setVal('agb', !form.agb);
             render();
+          } else if (key === 'unterschiedlicheDimensionen') {
+            setVal('unterschiedlicheDimensionen', !form.unterschiedlicheDimensionen);
+            render();
+            if (step === 2) { initSliderEvents(); initUploadEvents(); }
           } else if (key && key.startsWith('extra-')) {
             var extraId = key.replace('extra-', '');
             toggleExtra(extraId);

@@ -1730,7 +1730,7 @@
       var e = {};
       if (!form.fahrzeugTyp) e.fahrzeugTyp = true;
       if (!form.felgenTyp) e.felgenTyp = true;
-      if (!form.reifenTyp) e.reifenTyp = true;
+      if (form.neueReifen && !form.reifenTyp) e.reifenTyp = true;
       errors = e;
       return Object.keys(e).length === 0;
     }
@@ -2002,25 +2002,11 @@
       // Zoll Slider
       html += renderZollSlider();
 
-      // Reifenart
-      html += '<div>';
-      html += '<label class="booking-label">Reifenart <span class="req">*</span></label>';
-      html += '<div class="booking-select-grid cols-3" style="margin-top:8px;">';
-      for (var k = 0; k < REIFEN_TYPES.length; k++) {
-        html += '<button type="button" class="booking-select-btn' + (form.reifenTyp === REIFEN_TYPES[k] ? ' active' : '') + '" data-action="set" data-key="reifenTyp" data-value="' + esc(REIFEN_TYPES[k]) + '">' + esc(REIFEN_TYPES[k]) + '</button>';
-      }
-      html += '</div>';
-      if (errors.reifenTyp) html += '<p class="booking-error">Bitte w\u00e4hlen Sie die Reifenart.</p>';
-      html += '</div>';
-
-      // Reifendimensionen
-      html += '<div class="booking-field"><label class="booking-label">Reifendimensionen (falls bekannt)</label><input class="booking-input" data-key="reifenDimensionen" placeholder="z.B. 225/45 R17" value="' + esc(form.reifenDimensionen) + '"></div>';
+      // Neue Reifen Toggle (mit Reifenart + Dimensionen im Untermenu)
+      html += renderNeueReifenToggle();
 
       // Photo Upload
       html += renderPhotoUpload();
-
-      // Neue Reifen Toggle
-      html += renderNeueReifenToggle();
 
       html += '</div>'; // end gap-6
 
@@ -2166,7 +2152,25 @@
 
       if (active) {
         html += '<div class="booking-gap-3" style="margin-top:12px;" data-stop-propagation="true">';
+
+        // Reifenart (innerhalb Neue Reifen)
+        html += '<div>';
+        html += '<label class="booking-label">Reifenart <span class="req">*</span></label>';
+        html += '<div class="booking-select-grid cols-3" style="margin-top:8px;">';
+        for (var rt = 0; rt < REIFEN_TYPES.length; rt++) {
+          html += '<button type="button" class="booking-select-btn' + (form.reifenTyp === REIFEN_TYPES[rt] ? ' active' : '') + '" data-action="set" data-key="reifenTyp" data-value="' + esc(REIFEN_TYPES[rt]) + '">' + esc(REIFEN_TYPES[rt]) + '</button>';
+        }
+        html += '</div>';
+        if (errors.reifenTyp) html += '<p class="booking-error">Bitte w\u00e4hlen Sie die Reifenart.</p>';
+        html += '</div>';
+
+        // Reifendimensionen
+        html += '<div class="booking-field"><label class="booking-label">Reifendimensionen (falls bekannt)</label><input class="booking-input" data-key="reifenDimensionen" placeholder="z.B. 225/45 R17" value="' + esc(form.reifenDimensionen) + '"></div>';
+
+        // Markenwunsch
         html += '<div class="booking-field"><label class="booking-label">Markenwunsch</label><input class="booking-input" data-key="neueReifenMarke" placeholder="z.B. Michelin, Continental, Pirelli, Bridgestone..." value="' + esc(form.neueReifenMarke) + '"></div>';
+
+        // Gewünschte Dimensionen (wie bisher oder andere)
         html += '<div><label class="booking-label" style="display:block;margin-bottom:8px;">Gew\u00fcnschte Dimensionen</label>';
         html += '<div class="booking-dim-btns">';
         html += '<button type="button" class="booking-dim-btn' + (form.neueReifenWieBisher ? ' active' : '') + '" data-action="set" data-key="neueReifenWieBisher" data-value="true">' + (form.neueReifenWieBisher ? checkSvg() : '<span style="width:12px;height:12px;display:inline-block;"></span>') + ' Wie bisher</button>';

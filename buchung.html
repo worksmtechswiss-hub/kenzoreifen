@@ -2590,8 +2590,13 @@
 
       // Check if click is inside a [data-stop-propagation] container
       var stopProp = target.closest('[data-stop-propagation]');
-      if (stopProp && !target.closest('button[data-action]')) {
-        return;
+      if (stopProp) {
+        // Find the closest [data-action] from the click target
+        var innerAction = target.closest('[data-action]');
+        // Only allow if the action element is INSIDE the stopProp container
+        if (!innerAction || !stopProp.contains(innerAction)) {
+          return;
+        }
       }
 
       // Find closest action element

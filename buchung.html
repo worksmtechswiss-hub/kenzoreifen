@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termin buchen — Kenzo Reifen | Mobiler Reifenservice Winterthur</title>
-  <meta name="description" content="Buchen Sie Ihren mobilen Reifenwechsel in Winterthur online. In nur 4 Schritten zum Wunschtermin — Kenzo Reifen kommt zu Ihnen!">
+  <meta name="description" content="Buchen Sie Ihren mobilen Reifenwechsel in Winterthur online. In nur 5 Schritten zum Wunschtermin — Kenzo Reifen kommt zu Ihnen!">
   <meta name="keywords" content="Termin buchen Reifenwechsel, mobiler Reifenservice Winterthur buchen, online Termin Reifenwechsel, Pneuservice Termin">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.kenzo-reifen.ch/buchung.html">
   <meta property="og:title" content="Termin buchen — Kenzo Reifen | Mobiler Reifenservice Winterthur">
-  <meta property="og:description" content="Buchen Sie Ihren mobilen Reifenwechsel in Winterthur online. In nur 4 Schritten zum Wunschtermin.">
+  <meta property="og:description" content="Buchen Sie Ihren mobilen Reifenwechsel in Winterthur online. In nur 5 Schritten zum Wunschtermin.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.kenzo-reifen.ch/buchung.html">
   <meta property="og:locale" content="de_CH">
@@ -25,6 +25,9 @@
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Calendly -->
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
   <!-- Structured Data: Breadcrumb -->
   <script type="application/ld+json">
@@ -1270,6 +1273,27 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 28px rgba(100,46,142,0.4);
     }
+    .booking-calendly-section {
+      margin-top: 32px;
+    }
+    .booking-calendly-section h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .booking-calendly-section p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .booking-calendly-widget {
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 700px;
+      background: rgba(255,255,255,0.05);
+    }
     .booking-anfrage {
       color: #f86c20;
       font-style: italic;
@@ -1777,16 +1801,9 @@
 
     function validateStep4() {
       var e = {};
-      if (!form.vorname.trim()) e.vorname = true;
-      if (!form.nachname.trim()) e.nachname = true;
-      if (!form.email.trim() || form.email.indexOf('@') === -1) e.email = true;
-      if (!form.telefon.trim()) e.telefon = true;
       if (!form.strasse.trim()) e.strasse = true;
       if (!form.plz.trim()) e.plz = true;
       if (!form.ort.trim()) e.ort = true;
-      if (!form.wunschDatum) e.wunschDatum = true;
-      if (!form.wunschZeit) e.wunschZeit = true;
-      if (!form.kontaktZeit) e.kontaktZeit = true;
       if (!form.agb) e.agb = true;
       errors = e;
       return Object.keys(e).length === 0;
@@ -1835,19 +1852,12 @@
           neueReifenDimensionen: form.neueReifenWieBisher ? 'Wie bisher' : (form.neueReifenDimensionen || '-'),
           entsorgung: form.entsorgung ? form.entsorgungAnzahl + ' Reifen (CHF ' + p.entsorgungTotal + '.–)' : 'Nein',
           extras: form.extras.length ? form.extras.join(', ') : 'Keine',
-          vorname: form.vorname,
-          nachname: form.nachname,
-          email: form.email,
-          telefon: form.telefon,
           strasse: form.strasse,
           plz: form.plz,
           ort: form.ort,
-          wunschDatum: form.wunschDatum,
-          wunschZeit: form.wunschZeit,
-          kontaktZeit: form.kontaktZeit || 'Jederzeit',
           bemerkungen: form.bemerkungen || '-',
           total: 'CHF ' + p.total + '.–',
-          _subject: 'Neue Buchung: ' + form.vorname + ' ' + form.nachname + ' – ' + (form.serviceArt === 'reifenwechsel' ? 'Reifenwechsel' : 'Radwechsel') + ' ' + form.zoll + '"'
+          _subject: 'Neue Buchung: ' + (form.serviceArt === 'reifenwechsel' ? 'Reifenwechsel' : 'Radwechsel') + ' ' + form.zoll + '"'
         };
         // Show loading state
         var nextBtn = formCard.querySelector('[data-action="next"]');
@@ -2387,26 +2397,6 @@
       html += '<p class="booking-subtitle">Wo und wann sollen wir vorbeikommen?</p>';
       html += '<div class="booking-gap-6">';
 
-      // Name
-      html += '<div class="booking-grid-2">';
-      html += '<div class="booking-field"><label class="booking-label">Vorname <span class="req">*</span></label><input class="booking-input" data-key="vorname" placeholder="Max" value="' + esc(form.vorname) + '">';
-      if (errors.vorname) html += '<p class="booking-error">Pflichtfeld</p>';
-      html += '</div>';
-      html += '<div class="booking-field"><label class="booking-label">Nachname <span class="req">*</span></label><input class="booking-input" data-key="nachname" placeholder="Muster" value="' + esc(form.nachname) + '">';
-      if (errors.nachname) html += '<p class="booking-error">Pflichtfeld</p>';
-      html += '</div>';
-      html += '</div>';
-
-      // Email + Phone
-      html += '<div class="booking-grid-2">';
-      html += '<div class="booking-field"><label class="booking-label">E-Mail <span class="req">*</span></label><input class="booking-input" type="email" data-key="email" placeholder="max@beispiel.ch" value="' + esc(form.email) + '">';
-      if (errors.email) html += '<p class="booking-error">G\u00fcltige E-Mail ben\u00f6tigt</p>';
-      html += '</div>';
-      html += '<div class="booking-field"><label class="booking-label">Telefon <span class="req">*</span></label><input class="booking-input" type="tel" data-key="telefon" placeholder="+41 79 123 45 67" value="' + esc(form.telefon) + '">';
-      if (errors.telefon) html += '<p class="booking-error">Pflichtfeld</p>';
-      html += '</div>';
-      html += '</div>';
-
       // Anfahrt Zone
       html += '<div>';
       html += '<label class="booking-label">Anfahrtszone <span class="req">*</span></label>';
@@ -2430,44 +2420,15 @@
       html += '</div>';
       html += '</div></div></div>';
 
-      // Date + Time
-      html += '<div class="booking-grid-2">';
-      html += '<div class="booking-field"><label class="booking-label">Wunschdatum <span class="req">*</span></label><input class="booking-input" type="date" data-key="wunschDatum" value="' + esc(form.wunschDatum) + '">';
-      if (errors.wunschDatum) html += '<p class="booking-error">Bitte Datum w\u00e4hlen</p>';
+      // Calendly
+      html += '<div class="booking-calendly-section">';
+      html += '<h3>Termin direkt buchen</h3>';
+      html += '<p>W\u00e4hlen Sie einen passenden Zeitpunkt und geben Sie Ihre Kontaktdaten ein:</p>';
+      html += '<div class="booking-calendly-widget"><div class="calendly-inline-widget" data-url="https://calendly.com/kenzo-reifen-info/30min?hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div></div>';
       html += '</div>';
-      html += '<div class="booking-field"><label class="booking-label">Zeitfenster <span class="req">*</span></label>';
-      html += '<select class="booking-select' + (!form.wunschZeit ? ' placeholder' : '') + '" data-key="wunschZeit">';
-      html += '<option value="">Zeitfenster w\u00e4hlen</option>';
-      for (var i = 0; i < TIME_SLOTS.length; i++) {
-        html += '<option value="' + esc(TIME_SLOTS[i].value) + '"' + (form.wunschZeit === TIME_SLOTS[i].value ? ' selected' : '') + '>' + esc(TIME_SLOTS[i].label) + '</option>';
-      }
-      html += '</select>';
-      if (errors.wunschZeit) html += '<p class="booking-error">Bitte Zeitfenster w\u00e4hlen</p>';
-      if (p.isAbend) {
-        html += '<div class="booking-evening-info"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#f86c20" stroke-width="1.5"/><path d="M10 6v4l2.5 1.5" stroke="#f86c20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Abendzuschlag: +CHF ' + ABEND_ZUSCHLAG + '.\u2013 (ab 18:00 Uhr)</span></div>';
-      }
-      html += '</div></div>';
 
       // Bemerkungen
       html += '<div class="booking-field"><label class="booking-label">Bemerkungen (optional)</label><textarea class="booking-input booking-textarea" data-key="bemerkungen" placeholder="Sonstige Informationen, z.B. Parkm\u00f6glichkeiten, Zufahrt, R\u00e4der bereits abmontiert...">' + esc(form.bemerkungen) + '</textarea></div>';
-
-      // Kontaktzeit
-      html += '<div class="booking-field"><label class="booking-label">Wann m\u00f6chten Sie kontaktiert werden? <span class="req">*</span></label>';
-      html += '<select class="booking-select' + (!form.kontaktZeit ? ' placeholder' : '') + '" data-key="kontaktZeit">';
-      html += '<option value="">Bitte w\u00e4hlen</option>';
-      for (var k = 0; k < KONTAKT_ZEITEN.length; k++) {
-        html += '<option value="' + esc(KONTAKT_ZEITEN[k]) + '"' + (form.kontaktZeit === KONTAKT_ZEITEN[k] ? ' selected' : '') + '>' + esc(KONTAKT_ZEITEN[k]) + '</option>';
-      }
-      html += '</select>';
-      if (errors.kontaktZeit) html += '<p class="booking-error">Bitte w\u00e4hlen Sie eine bevorzugte Kontaktzeit.</p>';
-      html += '</div>';
-
-      // Phone info
-      html += '<div class="booking-phone-info">';
-      html += '<div class="booking-phone-info-icon">' + phoneSvg() + '</div>';
-      html += '<div><p class="booking-phone-info-title">Telefonische Best\u00e4tigung</p>';
-      html += '<p class="booking-phone-info-desc">Nach Eingang Ihrer Anfrage werden Sie von uns <strong style="color:#fff;">telefonisch kontaktiert</strong>, um den Termin verbindlich zu best\u00e4tigen und allf\u00e4llige Fragen zu kl\u00e4ren.</p>';
-      html += '</div></div>';
 
       // AGB
       html += '<div class="booking-agb">';
@@ -2496,6 +2457,17 @@
       html += '</div>';
 
       formCard.innerHTML = html;
+
+      // Initialize Calendly widget after DOM update
+      if (typeof Calendly !== 'undefined') {
+        var widgetEl = formCard.querySelector('.calendly-inline-widget');
+        if (widgetEl) {
+          Calendly.initInlineWidget({
+            url: widgetEl.getAttribute('data-url'),
+            parentElement: widgetEl
+          });
+        }
+      }
     }
 
     /* ── Success Screen ── */
@@ -2504,18 +2476,8 @@
       var html = '<div class="booking-success">';
 
       html += '<div class="booking-success-icon"><svg viewBox="0 0 24 24" fill="none" width="40" height="40"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
-      html += '<h2>Vielen Dank, ' + esc(form.vorname) + '!</h2>';
+      html += '<h2>Vielen Dank!</h2>';
       html += '<p>Ihre Buchungsanfrage wurde erfolgreich \u00fcbermittelt.</p>';
-
-      // Phone contact info
-      html += '<div class="booking-success-phone-info">';
-      html += '<svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#642e8e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      html += '<p>Wir werden Sie <strong style="color:#642e8e;">telefonisch kontaktieren</strong>';
-      if (form.kontaktZeit && form.kontaktZeit !== 'Jederzeit erreichbar') {
-        html += ' (' + esc(form.kontaktZeit) + ')';
-      }
-      html += ', um Ihren Termin verbindlich zu best\u00e4tigen.</p>';
-      html += '</div>';
 
       // Summary
       html += '<div class="booking-success-summary">';

@@ -1827,54 +1827,66 @@
 
     /* ═══ NAVIGATION ═══ */
 
+    var isSubmitting = false;
+
+    function submitForm(calendlyInfo) {
+      if (submitted || isSubmitting) return;
+      isSubmitting = true;
+      var p = calcPrices();
+      var payload = {
+        service: form.serviceArt === 'reifenwechsel' ? 'Reifenwechsel' : 'Radwechsel',
+        zoll: form.zoll + '"',
+        preis: 'CHF ' + p.price + '.–',
+        anfahrtZone: form.anfahrtZone === 'umkreis' ? 'Umkreis 30km' : 'Winterthur',
+        anfahrt: 'CHF ' + p.anfahrt + '.–',
+        fahrzeugTyp: form.fahrzeugTyp,
+        fahrzeugMarke: form.fahrzeugMarke,
+        fahrzeugModell: form.fahrzeugModell,
+        felgenTyp: form.felgenTyp,
+        reifenTyp: form.reifenTyp || '-',
+        reifenDimensionen: form.reifenDimensionen || '-',
+        reifenDimensionenHinten: form.unterschiedlicheDimensionen ? (form.reifenDimensionenHinten || '-') : 'Gleich wie vorne',
+        neueReifen: form.neueReifen ? 'Ja' : 'Nein',
+        neueReifenMarke: form.neueReifenMarke || '-',
+        neueReifenDimensionen: form.neueReifenWieBisher ? 'Wie bisher' : (form.neueReifenDimensionen || '-'),
+        entsorgung: form.entsorgung ? form.entsorgungAnzahl + ' Reifen (CHF ' + p.entsorgungTotal + '.–)' : 'Nein',
+        extras: form.extras.length ? form.extras.join(', ') : 'Keine',
+        strasse: form.strasse,
+        plz: form.plz,
+        ort: form.ort,
+        bemerkungen: form.bemerkungen || '-',
+        total: 'CHF ' + p.total + '.–',
+        calendlyGebucht: calendlyInfo ? 'Ja' : 'Nein',
+        calendlyEventUri: calendlyInfo && calendlyInfo.event ? calendlyInfo.event.uri : '-',
+        calendlyInviteeUri: calendlyInfo && calendlyInfo.invitee ? calendlyInfo.invitee.uri : '-',
+        _subject: (calendlyInfo ? 'Neue Buchung (Calendly): ' : 'Neue Buchung: ') + (form.serviceArt === 'reifenwechsel' ? 'Reifenwechsel' : 'Radwechsel') + ' ' + form.zoll + '"'
+      };
+      // Show loading state
+      var nextBtn = formCard.querySelector('[data-action="next"]');
+      if (nextBtn) { nextBtn.textContent = 'Wird gesendet...'; nextBtn.disabled = true; }
+      fetch('https://formspree.io/f/xojprzpy', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(res) {
+        submitted = true;
+        isSubmitting = false;
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }).catch(function(err) {
+        submitted = true;
+        isSubmitting = false;
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
     function handleNext() {
       if (step === 1 && !form.service) return;
       if (step === 2 && !validateStep2()) { render(); return; }
       if (step === 4) {
         if (!validateStep4()) { render(); return; }
-        // Submit to Formspree
-        var p = calcPrices();
-        var payload = {
-          service: form.serviceArt === 'reifenwechsel' ? 'Reifenwechsel' : 'Radwechsel',
-          zoll: form.zoll + '"',
-          preis: 'CHF ' + p.price + '.–',
-          anfahrtZone: form.anfahrtZone === 'umkreis' ? 'Umkreis 30km' : 'Winterthur',
-          anfahrt: 'CHF ' + p.anfahrt + '.–',
-          fahrzeugTyp: form.fahrzeugTyp,
-          fahrzeugMarke: form.fahrzeugMarke,
-          fahrzeugModell: form.fahrzeugModell,
-          felgenTyp: form.felgenTyp,
-          reifenTyp: form.reifenTyp || '-',
-          reifenDimensionen: form.reifenDimensionen || '-',
-          reifenDimensionenHinten: form.unterschiedlicheDimensionen ? (form.reifenDimensionenHinten || '-') : 'Gleich wie vorne',
-          neueReifen: form.neueReifen ? 'Ja' : 'Nein',
-          neueReifenMarke: form.neueReifenMarke || '-',
-          neueReifenDimensionen: form.neueReifenWieBisher ? 'Wie bisher' : (form.neueReifenDimensionen || '-'),
-          entsorgung: form.entsorgung ? form.entsorgungAnzahl + ' Reifen (CHF ' + p.entsorgungTotal + '.–)' : 'Nein',
-          extras: form.extras.length ? form.extras.join(', ') : 'Keine',
-          strasse: form.strasse,
-          plz: form.plz,
-          ort: form.ort,
-          bemerkungen: form.bemerkungen || '-',
-          total: 'CHF ' + p.total + '.–',
-          _subject: 'Neue Buchung: ' + (form.serviceArt === 'reifenwechsel' ? 'Reifenwechsel' : 'Radwechsel') + ' ' + form.zoll + '"'
-        };
-        // Show loading state
-        var nextBtn = formCard.querySelector('[data-action="next"]');
-        if (nextBtn) { nextBtn.textContent = 'Wird gesendet...'; nextBtn.disabled = true; }
-        fetch('https://formspree.io/f/xojprzpy', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
-        }).then(function(res) {
-          submitted = true;
-          render();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }).catch(function(err) {
-          submitted = true;
-          render();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        submitForm(null);
         return;
       }
       step++;
@@ -1882,6 +1894,17 @@
       render();
       window.scrollTo({ top: formCard.offsetTop - 100, behavior: 'smooth' });
     }
+
+    /* ═══ CALENDLY AUTO-SUBMIT ═══ */
+    // Listen for Calendly postMessage events — when user finishes booking
+    // via the widget, we auto-submit the form so we receive the multistep
+    // data even if the user forgets to click "Anfrage absenden".
+    window.addEventListener('message', function(e) {
+      if (!e.data || typeof e.data !== 'object') return;
+      if (e.data.event !== 'calendly.event_scheduled') return;
+      if (step !== 4 || submitted || isSubmitting) return;
+      submitForm(e.data.payload || {});
+    });
 
     function handleBack() {
       step--;
